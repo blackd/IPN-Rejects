@@ -1,0 +1,88 @@
+<section id="inventory-profiles-next" class="center" data-align="center">
+<h1>Inventory Profiles Next</h1>
+<p>An inventory sorter, with linear, horizontal and vertical sorting, and profiles support</p>
+<p><img src="https://i.imgur.com/e4CagVq.jpeg" /></p>
+<p><a href="https://discord.gg/23YCxmveUM">Join us on Discord</a></p>
+</section>
+<h2 id="whats-new">What’s new</h2>
+<!-- latest begin -->
+<h3 id="section">0.8.5</h3>
+<ul>
+<li>Fixed problem in Forge mods that made sorting impossible if the inventory/container has more than 1 enchanted item with same enchants, same item type, and same name and items were arranged in specific way.</li>
+<li>Added hotkey for reloading the mod configurations. It’s recommended that it’s only used while defining new custom rules and kept unset in other situations.</li>
+</ul>
+<h3 id="known-issues-in-forge-1.17.1-due-to-missing-mixin-support">Known Issues in Forge 1.17.1 due to missing MixIn support</h3>
+<ul>
+<li>Preventing swipe moving of locked slots doesn’t work.</li>
+<li>Preventing item pickups in empty locked slots falls back to the server method i.e. items are picked into the inventory and then thrown out.</li>
+</ul>
+<!-- latest end -->
+<h3 id="full-change-log">Full change log</h3>
+<div class="spoiler">
+<!-- rest begin -->
+<h3 id="section">0.8.4</h3>
+<ul>
+<li>Fixes locked slots behaviour when changing dimensions/worlds. There is new config that allows the user to control how many client ticks need to pass before the locked slot keeper is reinitialised on dimension/world change. This wait is necessary because the inventory might be empty when the player is spawned in the new dimension/world and we need to wait to receive the inventory content from the server.</li>
+</ul>
+<h3 id="section-1">0.8.3</h3>
+<ul>
+<li>Now on servers also items will not be picked into empty locked slots. NOTE! Doesn’t work while inventory is open. It’s not possible to distinguish between player moving items and server initiated changes.</li>
+<li>Added configuration to disable mod buttons on non-vanilla screens. For better compatibility with othe mods</li>
+</ul>
+<h3 id="section-2">0.8.2</h3>
+<ul>
+<li>Added per server locked slots. Enabled by default. Can be disabled in the configuration.</li>
+</ul>
+<h3 id="section-3">0.8.1</h3>
+<ul>
+<li>Added support for single click/press inventory throw. Hotkey can be configured in Hotkeys. Disabled by default. This obeys the same rules for hotbar as “move all”.</li>
+<li>Fixed Shift+Click Ctrl+Q skipping locked slots to work on servers.</li>
+<li>Clarified, in the tooltip, that not picking up items in locked slots works only in single player. Support for servers will require service side mod.</li>
+<li>We now have a discord server <strong><a href="https://discord.gg/23YCxmveUM"><img src="https://img.shields.io/discord/861171785897738240?label=Discord&amp;logo=discord&amp;style=plastic" alt="2" /></a></strong></li>
+</ul>
+<h3 id="section-4">0.8.0</h3>
+<ul>
+<li>Shift+Click Ctrl+Q can now be disabled and enabled (default) for locked slots. This also applies for swipe variant of the actions.</li>
+<li>SINGLE PLAYER ONLY. Items will not be picked into empty locked slots</li>
+</ul>
+<h2 id="known-issues">Known issues</h2>
+<ul>
+<li>When UI scaling is more than 2 or in case of tiny game windows the config screen might not show the anchor header correctly.</li>
+<li>If you make the game window 0x0 pixels while the configuration screen is open, sometimes the game crashes.</li>
+</ul>
+<!-- rest end -->
+</div>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Forge 1.16.5 &gt;= 36.1.32</li>
+<li>Forge 1.17.x &gt;= 37.0.17</li>
+</ul>
+<p><span></span></p>
+<ul>
+<li>Fabric Loader &gt;= 0.11.6 (see <a href="#updating-fabric">Updating Fabric</a>)</li>
+<li>Mod Menu &gt;= 2.0.2</li>
+</ul>
+<h2 id="migrate-from-inventory-profiles">Migrate from Inventory Profiles</h2>
+<ol type="1">
+<li>Move <span class="red"><strong>MINECRAFTHOME/config/inventoryprofiles</strong></span> somewhere</li>
+<li>Remove the old mod</li>
+<li>Install this mod</li>
+<li>Move back the <span class="red"><strong>inventoryprofiles</strong></span> folder from above</li>
+<li>Rename it to <span class="green"><strong>inventoryprofilesnext</strong></span></li>
+</ol>
+<p>Note: If you’re a Windows user, your <strong>MINECRAFTHOME</strong> is probably <strong>%appdata%/.minecraft</strong></p>
+<h2 id="updating-fabric">Updating Fabric</h2>
+<p>For the official launcher make sure you don’t have the game or the launcher running and follow <a href="https://fabricmc.net/wiki/player:tutorials:install_mcl:windows">this guide</a></p>
+<p>For the other launchers… really you should know how to do it :)</p>
+<h2 id="known-issues">Known issues</h2>
+<ul>
+<li>Anchor header may not be shown correctly if the UI scaling is more than 2 or if the game windows is too small</li>
+</ul>
+<h2 id="contributing">Contributing</h2>
+<p>If something doesn’t work, please file an issue <a href="https://github.com/blackd/Inventory-Profiles/issues">here</a></p>
+<p>If you speak another language and would like to help to translate it, you can do so <a href="https://github.com/blackd/Inventory-Profiles/tree/all-in-one/common/src/main/resources/assets/inventoryprofilesnext/lang">here</a></p>
+<p>If you’re a Kotlin developer and want to contribute, please see <a href="https://github.com/blackd/Inventory-Profiles">the source</a></p>
+<h2 id="thanks">Thanks</h2>
+<p>Thanks to <strong>jsminda</strong>, the original author of <a href="https://github.com/jsnimda/Inventory-Profiles">Inventory Profile</a></p>
+<h2 id="license">License</h2>
+<p>This mod is distributed under <a href="https://github.com/blackd/Inventory-Profiles/blob/all-in-one/LICENSE">MIT license</a></p>

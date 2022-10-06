@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "ipnrejects",
+  "version": "@VERSION@",
+  "name": "IPN Rejects",
+  "description": "Various features and tweaks that didn't make it in Inventory Profiles Next",
+  "authors": [
+    "mirinimi/blackd"
+  ],
+  "contributors": ["Selah (AspieGamer13)"],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/inventory-profiles-next",
+    "sources": "https://github.com/blackd/Inventory-Profiles"
+  },
+  "license": "@LICENSE@",
+  "icon": "assets/inventoryprofilesnext/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "org.anti_ad.mc.ipnrejects.EntryPointKt::init"
+    ],
+    "modmenu": [
+      "org.anti_ad.mc.ipnrejects.compat.ModMenuApiImpl"
+    ]
+  },
+  "mixins": [
+    "mixins.ipn-rejects.json",
+    "mixins.ipn-rejects.cheats.json"
+  ],
+  "accessWidener": "ipn-rejects.accesswidener",
+  "depends": {
+    "fabric-resource-loader-v0": "*",
+    "fabricloader": ">=0.11.6",
+    "minecraft": ">=1.17 <1.18",
+    "fabric-language-kotlin": ">=1.6.0+kotlin.1.5.0",
+    "libipn": ">=@LIBIPN_VERSION@"
+  }
+}

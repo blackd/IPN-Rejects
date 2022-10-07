@@ -1,0 +1,39 @@
+{
+  "ipnrejects.gui.config.title": "IPN Rejects v%s Settings",
+  "ipnrejects.gui.config.ModSettings": "General Settings",
+  "ipnrejects.gui.config.Cheats": "Cheats",
+  "ipnrejects.gui.config.Debugs": "Debug",
+
+  "ipnrejects.config.category.general_hotkeys": "Hotkeys",
+  "ipnrejects.config.category.privacy": "Privacy",
+  "ipnrejects.config.category.debug": "Debug",
+  "ipnrejects.config.category.cheating": "Cheating",
+
+  "ipnrejects.config.name.debug": "Debug",
+  "ipnrejects.config.description.debug": "Enables debug.\n\nNew Settings page will be available next time you open the settings.",
+
+  "ipnrejects.config.name.disable_block_breaking_cooldown": "Remove Block Break Cooldown",
+  "ipnrejects.config.description.disable_block_breaking_cooldown": "Makes block break faster.",
+
+  "ipnrejects.config.name.disable_item_use_cooldown": "Remove Item Use Cooldown",
+  "ipnrejects.config.description.disable_item_use_cooldown": "Use items faster...\n\nImagine throwing potions as fast as possible.",
+
+  "ipnrejects.config.name.disable_screen_shaking_on_damage": "Disable Screen Bobbing on Damage",
+  "ipnrejects.config.description.disable_screen_shaking_on_damage": "Screen will not shake when you take damage.",
+
+  "ipnrejects.config.name.instant_mining_cooldown": "Remove Mining Cooldown",
+  "ipnrejects.config.description.instant_mining_cooldown": "Makes mining faster",
+
+  "ipnrejects.config.name.enable_analytics": "Enable Telemetry Collection",
+  "ipnrejects.config.description.enable_analytics": "Enable Analytics.\nOnly information about the mod and which features are used is collected.\n    NO Personal information is sent. Your IP address is not stored.\n    None of the collected information will be shared, sold or transferred to anyone!",
+
+  "ipnrejects.config.name.enable_cheats": "Enable Cheats",
+  "ipnrejects.config.description.enable_cheats": "General ON/OFF for all cheats.",
+
+  "ipnrejects.config.name.enable_updates_check": "Enable Update Checks",
+  "ipnrejects.config.description.enable_updates_check": "Display message if a new version of the mod is available. To do the check we send to our servers ONLY the following information:\n    Minecraft Version, Fabric or Forge, Inventory Profiles Next version.\n   Your IP address is not saved!",
+
+  "ipnrejects.config.name.open_config_menu": "Show Settings",
+
+  "ipnrejects.config.name.trace_logs": "Enable Trace Logs"
+}

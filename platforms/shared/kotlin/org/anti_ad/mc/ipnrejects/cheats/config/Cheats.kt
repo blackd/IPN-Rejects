@@ -9,7 +9,7 @@ import org.anti_ad.mc.ipnrejects.config.registerConfigDeclaration
 
 object Cheats: ConfigDeclaration {
     override val builder = createBuilder()
-        .CATEGORY("$CONFIG_CATEGORY.survival")
+        .CATEGORY("$CONFIG_CATEGORY.cheating")
     val INSTANT_MINING_COOLDOWN                   /**/ by keyToggleBool(false)
     val DISABLE_BLOCK_BREAKING_COOLDOWN           /**/ by keyToggleBool(false)
     val DISABLE_ITEM_USE_COOLDOWN                 /**/ by keyToggleBool(false)

@@ -33,7 +33,6 @@ import org.anti_ad.mc.common.config.builder.keyToggleBool
 import org.anti_ad.mc.common.config.builder.toMultiConfig
 import org.anti_ad.mc.common.input.KeybindSettings
 import org.anti_ad.mc.common.vanilla.glue.VanillaUtil
-import kotlin.math.sign
 
 
 const val CONFIG_CATEGORY = "ipnrejects.config.category"
@@ -62,6 +61,7 @@ object Debugs: ConfigDeclaration {
     override val builder = createBuilder()
 
         .CATEGORY("§§vgap:3")
+        .CATEGORY("$CONFIG_CATEGORY.debug")
     val TRACE_LOGS                                /**/ by bool(false)
 }
 
@@ -95,6 +95,18 @@ fun registerConfigDeclaration(vararg cd: ConfigDeclaration) {
                 Configs.add(it)
             }
         }
+    }
+    Configs.sortBy {
+        DebugLastComparable(it)
+    }
+}
+
+private class DebugLastComparable<T>(val self: T): Comparable<DebugLastComparable<T>> {
+    override fun compareTo(other: DebugLastComparable<T>): Int {
+        if (self === other.self) return 0
+        if (self === Debugs) return 1
+        if (other.self === Debugs) return -1
+        return 0
     }
 }
 

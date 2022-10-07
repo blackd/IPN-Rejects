@@ -249,7 +249,7 @@ configure<CurseExtension> {
     }
 
     project(closureOf<CurseProject> {
-        id = "495267"
+        id = "686712"
         changelogType = "markdown"
         changelog = file("../../description/out/pandoc-release_notes.md")
         releaseType = "release"
@@ -296,7 +296,7 @@ modrinth {
         token.set(System.getenv("MODRINTH_TOKEN"))
     }
 
-    projectId.set("O7RBXm3n")
+    projectId.set("JI9IF5oh")
     versionNumber.set("$mod_loader-$minecraft_version-$mod_version") // Will fail if Modrinth has this version already
     val fabricRemapJar = tasks.named<org.gradle.jvm.tasks.Jar>("remapJar").get()
     val remappedJarFile = fabricRemapJar.archiveFile

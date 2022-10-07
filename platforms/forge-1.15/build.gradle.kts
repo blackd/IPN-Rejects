@@ -442,7 +442,7 @@ configure<CurseExtension> {
     }
 
     project(closureOf<CurseProject> {
-        id = "495267"
+        id = "686712"
         changelogType = "markdown"
         changelog = file("../../description/out/pandoc-release_notes.md")
         releaseType = "beta"
@@ -491,7 +491,7 @@ modrinth {
         ""
     }
 
-    projectId.set("O7RBXm3n")
+    projectId.set("JI9IF5oh")
     versionNumber.set("$mod_loader-$minecraft_version-$mod_version$clasifier") // Will fail if Modrinth has this version already
     val forgeReobfJar = tasks.named<Jar>("shadowJar").get()
     val remappedJarFile = forgeReobfJar.archiveFile

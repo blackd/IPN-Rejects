@@ -94,7 +94,6 @@ class ConfigScreen(private val gui: Boolean = false) : ConfigScreenBase(getTrans
 
     private fun getDescriptionNameId(key: String): String {
         val id = DESCRIPTION_PREFIX + key
-
         Log.trace("getDescriptionNameId -> $id", Exception())
         return id
     }

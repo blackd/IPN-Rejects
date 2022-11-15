@@ -23,16 +23,10 @@
 package org.anti_ad.mc.ipnrejects.config
 
 import org.anti_ad.mc.common.Savable
-import org.anti_ad.mc.common.config.builder.CATEGORY
-import org.anti_ad.mc.common.config.builder.ConfigDeclaration
-import org.anti_ad.mc.common.config.builder.ConfigSaveLoadManager
-import org.anti_ad.mc.common.config.builder.bool
-import org.anti_ad.mc.common.config.builder.createBuilder
-import org.anti_ad.mc.common.config.builder.hotkey
-import org.anti_ad.mc.common.config.builder.keyToggleBool
-import org.anti_ad.mc.common.config.builder.toMultiConfig
+import org.anti_ad.mc.common.config.builder.*
 import org.anti_ad.mc.common.input.KeybindSettings
 import org.anti_ad.mc.common.vanilla.glue.VanillaUtil
+import org.anti_ad.mc.ipnrejects.RejectsInfoManager
 
 
 const val CONFIG_CATEGORY = "ipnrejects.config.category"
@@ -63,6 +57,7 @@ object Debugs: ConfigDeclaration {
         .CATEGORY("§§vgap:3")
         .CATEGORY("$CONFIG_CATEGORY.debug")
     val TRACE_LOGS                                /**/ by bool(false)
+    //val CHECK_VERSION                             /**/ by button(RejectsInfoManager.DoVersionCheckButtonInfo)
 }
 
 

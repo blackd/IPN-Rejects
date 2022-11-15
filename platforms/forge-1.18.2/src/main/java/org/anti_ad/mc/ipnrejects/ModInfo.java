@@ -44,4 +44,8 @@ public class ModInfo {
         return version.get();
     }
 
+    public static final String MODRINTH_URL = "https://modrinth.com/mod/ipn-rejects";
+    public static final String CURSEFORGE_URL = "https://www.curseforge.com/minecraft/mc-mods/ipn-rejects";
+
+
 }

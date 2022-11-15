@@ -1,20 +1,30 @@
 package org.anti_ad.mc.ipnrejects.events.management
 
+import org.anti_ad.mc.ipnrejects.events.management.TicksDispatcher.ActionType.POST
 import org.anti_ad.mc.ipnrejects.events.management.TicksDispatcher.ActionType.PRE
 
 object OnetimeDelayedInit {
 
     private var doTrigger: Boolean = true
+    private var doTriggerPost: Boolean = true
 
     private val actions = mutableListOf<Pair<Int, () -> Unit>>()
+    private val postActions = mutableListOf<Pair<Int, () -> Unit>>()
 
     fun init() {
         TicksDispatcher.register(PRE, this::onTickPre)
+        TicksDispatcher.register(POST, this::onTickPost)
     }
 
     fun register(priority: Int, action: () -> Unit) {
         if (doTrigger) {
             actions.add(Pair(priority, action))
+        }
+    }
+
+    fun registerPost(priority: Int, action: () -> Unit) {
+        if (doTriggerPost) {
+            postActions.add(Pair(priority, action))
         }
     }
 
@@ -29,6 +39,20 @@ object OnetimeDelayedInit {
                 action()
             }
             actions.clear()
+        }
+    }
+
+    private fun onTickPost() {
+        if (doTriggerPost) {
+            TicksDispatcher.removePost(this::onTickPost)
+            doTriggerPost = false
+            postActions.sortBy {  ( priority, _) ->
+                priority
+            }
+            postActions.forEach { (_, action) ->
+                action()
+            }
+            postActions.clear()
         }
     }
 }

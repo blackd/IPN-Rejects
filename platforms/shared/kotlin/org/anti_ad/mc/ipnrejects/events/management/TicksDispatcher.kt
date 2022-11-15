@@ -40,4 +40,8 @@ object TicksDispatcher {
         pre.remove(action)
     }
 
+    fun removePost(action: () -> Unit) {
+        post.remove(action)
+    }
+
 }

@@ -26,4 +26,7 @@ object ModInfo {
     const val MOD_ID = "ipnrejects"
     const val MOD_NAME = "IPN Rejects"
     val MOD_VERSION: String = FabricUtil.getModVersionString(MOD_ID)
+
+    const val MODRINTH_URL = "https://modrinth.com/mod/ipn-rejects"
+    const val CURSEFORGE_URL = "https://www.curseforge.com/minecraft/mc-mods/ipn-rejects"
 }

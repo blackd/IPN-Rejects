@@ -19,7 +19,6 @@
 
 package org.anti_ad.mc.ipnrejects
 
-import org.anti_ad.mc.common.moreinfo.InfoManager
 import org.anti_ad.mc.common.vanilla.alias.SharedConstants
 import org.anti_ad.mc.ipnrejects.cheats.ItemUseCooldown
 import org.anti_ad.mc.ipnrejects.config.Debugs
@@ -30,12 +29,8 @@ import org.anti_ad.mc.ipnrejects.input.InputHandler
 
 
 private fun initInfoManager() {
-    InfoManager.loader = "fabric"
-    InfoManager.modName = ModInfo.MOD_NAME
-    InfoManager.modId = ModInfo.MOD_ID
-    InfoManager.version = ModInfo.MOD_VERSION
-    InfoManager.mcVersion = SharedConstants.getGameVersion().releaseTarget
-
+    RejectsInfoManager.loader = "fabric"
+    RejectsInfoManager.mcVersion = SharedConstants.getGameVersion().releaseTarget
 }
 
 fun specificInit() {
@@ -52,13 +47,10 @@ fun specificInit() {
         SaveLoadManager.load()
         //CustomDataFileLoader.load()
         if (ModSettings.FIRST_RUN.booleanValue) {
-            InfoManager.isEnabled = { false }
             ModSettings.FIRST_RUN. value = false
             SaveLoadManager.save()
-        } else {
-            InfoManager.isEnabled = { ModSettings.ENABLE_ANALYTICS.value }
         }
-        InfoManager.event(lazy {"${InfoManager.loader}/${InfoManager.mcVersion}/${InfoManager.version}/started"})
+        RejectsInfoManager.event(lazy {"${RejectsInfoManager.loader}/${RejectsInfoManager.mcVersion}/${RejectsInfoManager.version}/started"})
     }
 
 }

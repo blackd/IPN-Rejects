@@ -31,6 +31,7 @@ fun init() {
     CheatsInit()
     specificInit()
 
+    OnetimeDelayedInit.registerPost(0, RejectsInfoManager::doCheckVersion)
     OnetimeDelayedInit.init()
 
 }

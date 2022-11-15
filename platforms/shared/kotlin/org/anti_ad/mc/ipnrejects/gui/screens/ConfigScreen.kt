@@ -55,9 +55,9 @@ object ConfigScreeHelper {
                 "#c60926"
             }
             val yesNo = if (value) {
-                "inventoryprofiles.common.gui.config.yes"
+                "ipnrejects.gui.config.on"
             } else {
-                "inventoryprofiles.common.gui.config.no"
+                "ipnrejects.gui.config.off"
             }
             val name = DISPLAY_NAME_PREFIX + key
 

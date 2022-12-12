@@ -30,7 +30,7 @@ import org.anti_ad.mc.ipnrejects.input.InputHandler
 
 private fun initInfoManager() {
     RejectsInfoManager.loader = "forge"
-    RejectsInfoManager.mcVersion = SharedConstants.getCurrentVersion().releaseTarget
+    RejectsInfoManager.mcVersion = SharedConstants.getCurrentVersion().id
 
 }
 

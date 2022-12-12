@@ -23,10 +23,12 @@
 package org.anti_ad.mc.ipnrejects.config
 
 import org.anti_ad.mc.common.Savable
+import org.anti_ad.mc.common.config.builder.CATEGORY
 import org.anti_ad.mc.common.config.builder.*
 import org.anti_ad.mc.common.input.KeybindSettings
-import org.anti_ad.mc.common.vanilla.glue.VanillaUtil
+import org.anti_ad.mc.common.vanilla.VanillaUtil
 import org.anti_ad.mc.ipnrejects.RejectsInfoManager
+import org.anti_ad.mc.ipnrejects.gui.screens.ConfigScreeHelper.keyToggleBool
 
 
 const val CONFIG_CATEGORY = "ipnrejects.config.category"

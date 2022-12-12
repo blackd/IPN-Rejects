@@ -32,7 +32,7 @@ import org.anti_ad.mc.ipnrejects.buildsrc.registerMinimizeJarTask
 import org.anti_ad.mc.ipnrejects.buildsrc.loom_version
 import proguard.gradle.ProGuardTask
 
-val supported_minecraft_versions = listOf("1.19", "1.19.1", "1.19.2")
+val supported_minecraft_versions = listOf("1.19", "1.19.1", "1.19.2", "1.19.3")
 val mod_loader = "fabric"
 val mod_version = project.version.toString()
 val minecraft_version = "1.19.2"

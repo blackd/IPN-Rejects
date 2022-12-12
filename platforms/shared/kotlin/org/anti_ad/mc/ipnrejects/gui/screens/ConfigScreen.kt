@@ -22,9 +22,15 @@ package org.anti_ad.mc.ipnrejects.gui.screens
 
 import org.anti_ad.mc.common.config.CategorizedMultiConfig
 import org.anti_ad.mc.common.config.builder.ConfigDeclaration
+import org.anti_ad.mc.common.config.builder.addTo
 import org.anti_ad.mc.common.config.builder.toMultiConfigList
+import org.anti_ad.mc.common.config.options.BaseConfigKeyToggleBooleanInputHandler
+import org.anti_ad.mc.common.config.options.ConfigKeyToggleBoolean
 import org.anti_ad.mc.common.gui.screen.ConfigScreenBase
+import org.anti_ad.mc.common.config.builder.keyToggleBool as libIPNKeyToggleBool
 import org.anti_ad.mc.common.gui.widgets.toListWidget
+import org.anti_ad.mc.common.input.KeybindSettings
+import org.anti_ad.mc.common.input.KeybindSettings.Companion.INGAME_DEFAULT
 import org.anti_ad.mc.common.moreinfo.InfoManager
 import org.anti_ad.mc.common.vanilla.Vanilla
 import org.anti_ad.mc.common.vanilla.*
@@ -42,7 +48,7 @@ private const val BUTTON_PREFIX = "ipnrejects.gui.config."
 private const val DISPLAY_NAME_PREFIX = "ipnrejects.config.name."
 private const val DESCRIPTION_PREFIX = "ipnrejects.config.description."
 
-object ConfigScreeHelper {
+object ConfigScreeHelper: BaseConfigKeyToggleBooleanInputHandler() {
 
     @JvmStatic
     fun toggleBooleanSettingMessage(value: Boolean,
@@ -75,6 +81,16 @@ object ConfigScreeHelper {
     fun finish() {
         SaveLoadManager.save()
     }
+
+    fun ConfigDeclaration.keyToggleBool(defaultValue: Boolean,
+                                        defaultSettings: KeybindSettings = INGAME_DEFAULT) =
+        ConfigKeyToggleBoolean(defaultValue,
+                               ConfigScreeHelper::finish,
+                               ConfigScreeHelper::toggleBooleanSettingMessage,
+                               defaultSettings = defaultSettings)
+            .also {
+                allToggleSettings.add(it)
+            }.addTo(this)
 }
 
 

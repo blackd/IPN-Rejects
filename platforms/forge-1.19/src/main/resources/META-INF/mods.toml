@@ -54,13 +54,13 @@ Collection of too controversial features that were removed from IPN
 [[dependencies.ipnrejects]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19,)"
+    versionRange="[1.19,1.20)"
     ordering="NONE"
     side="CLIENT"
 
 [[dependencies.ipnrejects]]
     modId="libipn"
     mandatory=true
-    versionRange="[@LIBIPN_VERSION@,)"
+    versionRange="[@LIBIPN_VERSION@,3)"
     ordering="NONE"
     side="CLIENT"

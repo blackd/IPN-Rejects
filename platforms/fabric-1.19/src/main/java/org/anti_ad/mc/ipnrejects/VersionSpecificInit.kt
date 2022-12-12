@@ -30,7 +30,7 @@ import org.anti_ad.mc.ipnrejects.input.InputHandler
 
 private fun initInfoManager() {
     RejectsInfoManager.loader = "fabric"
-    RejectsInfoManager.mcVersion = SharedConstants.getGameVersion().releaseTarget
+    RejectsInfoManager.mcVersion = SharedConstants.getGameVersion().id
 }
 
 fun specificInit() {
@@ -47,7 +47,7 @@ fun specificInit() {
         SaveLoadManager.load()
         //CustomDataFileLoader.load()
         if (ModSettings.FIRST_RUN.booleanValue) {
-            ModSettings.FIRST_RUN. value = false
+            ModSettings.FIRST_RUN.value = false
             SaveLoadManager.save()
         }
         RejectsInfoManager.event(lazy {"${RejectsInfoManager.loader}/${RejectsInfoManager.mcVersion}/${RejectsInfoManager.version}/started"})

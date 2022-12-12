@@ -26,6 +26,7 @@ import org.anti_ad.mc.common.extensions.tryCatch
 import org.anti_ad.mc.common.input.GlobalInputHandler
 import org.anti_ad.mc.common.vanilla.VanillaScreenUtil
 import org.anti_ad.mc.ipnrejects.config.Hotkeys
+import org.anti_ad.mc.ipnrejects.gui.screens.ConfigScreeHelper
 import org.anti_ad.mc.ipnrejects.gui.screens.ConfigScreen
 
 
@@ -46,7 +47,7 @@ object InputHandler : IInputHandler {
             }
 
 
-            ConfigKeyToggleBoolean.checkAll()
+            ConfigScreeHelper.checkAll()
 
             return false
         }

@@ -1,5 +1,7 @@
 <!-- latest begin -->
 
+### v 1.0.3
+
 - Added support for 1.19.4 Fabric and Forge.
 - Fabric all versions now requires fabric loaded **0.14.17** or newer.
 - Fabric minimal required version of Fabric Language Kotlin is now **1.9.2+kotlin.1.8.10**

@@ -38,7 +38,7 @@ val mod_version = project.version.toString()
 val minecraft_version = "1.18.2"
 val minecraft_version_string = "1.18.2"
 val mappings_version = "1.18.2+build.4"
-val loader_version = "0.14.8"
+val loader_version = "0.14.17"
 val modmenu_version = "3.0.1"
 val fabric_api_version = "0.58.0+1.18.2"
 val mod_artefact_version = project.ext["mod_artefact_version"]
@@ -84,12 +84,6 @@ group = "org.anti-ad.mc"
 configure<JavaPluginExtension> {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
-}
-
-val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    languageVersion = "1.5"
-    jvmTarget = "17"
 }
 
 repositories {

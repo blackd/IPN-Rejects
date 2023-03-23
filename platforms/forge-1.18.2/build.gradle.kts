@@ -42,7 +42,7 @@ val minecraft_version = "1.18.2"
 val minecraft_version_string = "1.18.2"
 val forge_version = "40.1.21"
 val mod_artefact_version = project.ext["mod_artefact_version"]
-val kotlin_for_forge_version = "3.6.0"
+val kotlin_for_forge_version = "3.11.0"
 val mappingsMap = mapOf("channel" to "official",
                         "version" to "1.18.2")
 val libIPN_version = "${project.name}:${project.ext["libIPN_version"]}"

@@ -23,7 +23,7 @@ import org.anti_ad.mc.ipnrejects.buildsrc.loom_version
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 
-val versionObj = Version("1", "0", "2",
+val versionObj = Version("1", "0", "3",
                          preRelease = (System.getenv("IPNEXT_RELEASE") == null))
 
 
@@ -43,8 +43,8 @@ repositories {
 
 plugins {
     `kotlin-dsl`
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.serialization") version "1.6.21"
+    kotlin("jvm") version "1.8.10"
+    kotlin("plugin.serialization") version "1.8.10"
 
 
     idea
@@ -87,7 +87,7 @@ allprojects {
     version = versionObj.toString()
     group = "org.anti-ad.mc"
     ext.set("mod_artefact_version", versionObj.toCleanString())
-    ext.set("libIPN_version", "2.0.0")
+    ext.set("libIPN_version", "2.0.4")
 
     tasks.withType<JavaCompile>().configureEach {
         options.isFork = true
@@ -96,13 +96,14 @@ allprojects {
 
     tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions {
-            freeCompilerArgs = mutableListOf("-opt-in=kotlin.ExperimentalStdlibApi") + freeCompilerArgs
+            languageVersion = "1.8"
+            jvmTarget = "17"
+            freeCompilerArgs = mutableListOf("-opt-in=kotlin.ExperimentalStdlibApi", "-opt-in=kotlin.RequiresOptIn") + freeCompilerArgs
         }
         this.incremental = true
     }
 
 }
-
 
 tasks.named<Jar>("jar") {
     enabled = false

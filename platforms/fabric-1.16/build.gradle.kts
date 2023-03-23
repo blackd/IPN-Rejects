@@ -38,7 +38,7 @@ val mod_version = project.version
 val minecraft_version = "1.16.5"
 val minecraft_version_string = "1.16[.1-5]"
 val mappings_version = "1.16.5+build.9"
-val loader_version = "0.14.3"
+val loader_version = "0.14.17"
 val modmenu_version = "1.16.9"
 val fabric_api_version = "0.41.3+1.16"
 val mod_artefact_version = project.ext["mod_artefact_version"]
@@ -46,7 +46,7 @@ val libIPN_version = "${project.name}:${project.ext["libIPN_version"]}"
 
 buildscript {
     dependencies {
-        classpath("com.guardsquare:proguard-gradle:7.2.1")
+        classpath("com.guardsquare:proguard-gradle:7.2.2")
     }
 }
 
@@ -88,7 +88,7 @@ configure<JavaPluginExtension> {
 
 val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
 compileKotlin.kotlinOptions {
-    languageVersion = "1.5"
+    languageVersion = "1.8"
     jvmTarget = "1.8"
 }
 

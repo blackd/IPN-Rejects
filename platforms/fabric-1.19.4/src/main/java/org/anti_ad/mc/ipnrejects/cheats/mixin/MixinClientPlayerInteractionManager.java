@@ -3,6 +3,8 @@ package org.anti_ad.mc.ipnrejects.cheats.mixin;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.network.packet.Packet;
+//import net.minecraft.util.math.BlockPos;
+//import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import org.anti_ad.mc.ipnrejects.cheats.config.Cheats;
@@ -30,7 +32,8 @@ public class MixinClientPlayerInteractionManager {
     }
 
 
-    @Inject(at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;attackBlock(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;)Z"),
+    @SuppressWarnings("rawtypes")
+    @Inject(at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;breakBlock(Lnet/minecraft/util/math/BlockPos;)Z"),
             method = "method_41930(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;I)Lnet/minecraft/network/packet/Packet;")
     public void attackBlock(BlockState blockState, BlockPos blockPos, Direction direction, int sequence, CallbackInfoReturnable<Packet> cir) {
         if (ModSettings.INSTANCE.getENABLE_CHEATS().getValue() && Cheats.INSTANCE.getINSTANT_MINING_COOLDOWN().getBooleanValue()) {

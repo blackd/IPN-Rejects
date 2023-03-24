@@ -23,7 +23,7 @@ import org.anti_ad.mc.ipnrejects.buildsrc.loom_version
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 
-val versionObj = Version("1", "0", "3",
+val versionObj = Version("1", "0", "4",
                          preRelease = (System.getenv("IPNEXT_RELEASE") == null))
 
 

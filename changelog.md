@@ -1,4 +1,7 @@
 <!-- latest begin -->
+### v 1.0.4
+
+- fixes Fabric 1.19.4 crash on world load.
 
 ### v 1.0.3
 

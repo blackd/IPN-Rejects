@@ -262,7 +262,7 @@ configure<CurseExtension> {
             +*************************************************+
         """.trimIndent())
         mainArtifact(remappedJarFile, closureOf<com.matthewprenger.cursegradle.CurseArtifact> {
-            displayName = "Inventory Profiles Next-fabric-$minecraft_version_string-$mod_version"
+            displayName = "IPN Rejects-fabric-$minecraft_version_string-$mod_version"
         })
 
         relations(closureOf<com.matthewprenger.cursegradle.CurseRelation> {

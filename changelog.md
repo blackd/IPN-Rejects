@@ -1,4 +1,13 @@
 <!-- latest begin -->
+
+### v1.0.5
+
+- Added support for 1.20
+- Now depends on libIPN >=3.0.0
+
+<!-- latest end -->
+<!-- rest begin -->
+
 ### v 1.0.4
 
 - fixes Fabric 1.19.4 crash on world load.
@@ -11,9 +20,6 @@
 - Forge 1.18.2 and 1.19.1-2 now require Kotlin for Forge 3.11.0 or newer.
 - Forge 1.19.3-4 now require Kotlin for Forge 4.1.0 or newer.
 
-
-<!-- latest end -->
-<!-- rest begin -->
 
 ### v 1.0.2
 

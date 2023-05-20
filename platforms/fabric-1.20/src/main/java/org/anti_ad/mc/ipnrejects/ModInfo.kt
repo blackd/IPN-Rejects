@@ -1,6 +1,7 @@
 /*
  * Inventory Profiles Next
  *
+ *   Copyright (c) 2019-2020 jsnimda <7615255+jsnimda@users.noreply.github.com>
  *   Copyright (c) 2021-2022 Plamen K. Kosseff <p.kosseff@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,38 +18,15 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+package org.anti_ad.mc.ipnrejects
 
-rootProject.name = "IPNRejects"
+import org.anti_ad.mc.common.fabric.FabricUtil
 
-include("platforms:fabric-1.20")
-include("platforms:fabric-1.19.4")
-include("platforms:fabric-1.19")
-include("platforms:fabric-1.18.2")
-include("platforms:fabric-1.16")
+object ModInfo {
+    const val MOD_ID = "ipnrejects"
+    const val MOD_NAME = "IPN Rejects"
+    val MOD_VERSION: String = FabricUtil.getModVersionString(MOD_ID)
 
-include("platforms:forge-1.16")
-include("platforms:forge-1.18.2")
-include("platforms:forge-1.19")
-include("platforms:forge-1.19.4")
-
-pluginManagement {
-    repositories {
-        maven(url = "https://maven.fabricmc.net") {
-            name = "Fabric"
-        }
-        mavenCentral()
-        google()
-        gradlePluginPortal()
-    }
-}
-
-plugins {
-    id("com.gradle.enterprise") version "3.4.1"
-}
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
+    const val MODRINTH_URL = "https://modrinth.com/mod/ipn-rejects"
+    const val CURSEFORGE_URL = "https://www.curseforge.com/minecraft/mc-mods/ipn-rejects"
 }

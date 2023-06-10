@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 @Mixin(GameRenderer.class)
 public class MixinGameRenderer {
-    @Inject(at = @At("HEAD"), method = "Lnet/minecraft/client/render/GameRenderer;bobView(Lnet/minecraft/client/util/math/MatrixStack;F)V", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "Lnet/minecraft/client/render/GameRenderer;tiltViewWhenHurt(Lnet/minecraft/client/util/math/MatrixStack;F)V", cancellable = true)
     public void bobViewWhenHurt(MatrixStack matrixStack_1, float float_1, CallbackInfo info) {
         if (Cheats.INSTANCE.getDISABLE_SCREEN_SHAKING_ON_DAMAGE().getBooleanValue()) {
             info.cancel();

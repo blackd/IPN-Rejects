@@ -1,12 +1,17 @@
 <!-- latest begin -->
 
+### v1.0.6
+
+- Proper 1.20 Fabric support.
+- Fixes disable screen shake on damage for 1.19.4 and 1.20 Fabric  
+
+<!-- latest end -->
+<!-- rest begin -->
+
 ### v1.0.5
 
 - Added support for 1.20
 - Now depends on libIPN >=3.0.0
-
-<!-- latest end -->
-<!-- rest begin -->
 
 ### v 1.0.4
 

@@ -1,5 +1,0 @@
-accessWidener v1 named
-
-# cheats
-accessible field net/minecraft/client/MinecraftClient itemUseCooldown I
-mutable field net/minecraft/client/MinecraftClient itemUseCooldown I

@@ -1,7 +1,7 @@
 /*
  * Inventory Profiles Next
  *
- *   Copyright (c) 2021-2022 Plamen K. Kosseff <p.kosseff@gmail.com>
+ *   Copyright (c) 2022 Plamen K. Kosseff <p.kosseff@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,36 +17,14 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+package org.anti_ad.mc.ipnrejects.forge
 
-rootProject.name = "IPNRejects"
+import org.anti_ad.mc.ipnrejects.Log
 
-include("platforms:fabric-1.20")
-include("platforms:fabric-1.19")
-include("platforms:fabric-1.18.2")
+class IPNRejectsServerInit: Runnable {
 
-include("platforms:forge-1.18.2")
-include("platforms:forge-1.19")
-include("platforms:forge-1.20")
-
-
-pluginManagement {
-    repositories {
-        maven(url = "https://maven.fabricmc.net") {
-            name = "Fabric"
-        }
-        mavenCentral()
-        google()
-        gradlePluginPortal()
+    override fun run() {
+        Log.error("This mod is client side only you don't need it on the server!")
     }
-}
 
-plugins {
-    id("com.gradle.enterprise") version "3.4.1"
-}
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
 }

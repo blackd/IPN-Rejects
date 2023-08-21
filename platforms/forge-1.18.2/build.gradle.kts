@@ -35,7 +35,10 @@ import org.anti_ad.mc.ipnrejects.buildsrc.registerMinimizeJarTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import proguard.gradle.ProGuardTask
 
-val supported_minecraft_versions = listOf("1.18.2")
+val supported_minecraft_versions_modrinth = listOf("1.18.2")
+val supported_minecraft_versions_curseforge = listOf("Forge", "NeoForge", "1.18.2")
+val modrinth_mod_loaders = listOf("forge", "neoforge")
+
 val mod_loader = "forge"
 val mod_version = project.version
 val minecraft_version = "1.18.2"
@@ -50,7 +53,7 @@ val libIPN_version = "${project.name}:${project.ext["libIPN_version"]}"
 logger.lifecycle("""
     ***************************************************
     Processing "${project.path}"
-    supported versions: $supported_minecraft_versions
+    supported versions: $supported_minecraft_versions_modrinth
     loader: $mod_loader
     mod version: $mod_version
     building against MC: $minecraft_version
@@ -248,12 +251,6 @@ tasks.named<ShadowJar>("shadowJar") {
     exclude("kotlin/**")
     exclude("kotlinx/**")
 
-    //exclude("META-INF/**")
-    //exclude("**/*.kotlin_metadata")
-    //exclude("**/*.kotlin_module")
-    //exclude("**/*.kotlin_builtins")
-    //exclude("**/*_ws.class") // fixme find a better solution for removing *.ws.kts
-    //exclude("**/*_ws$*.class")
     exclude("**/*.stg")
     exclude("**/*.st")
     exclude("mappings/mappings.tiny") // before kt, build .jar don"t have this folder (this 500K thing)
@@ -542,11 +539,9 @@ configure<CurseExtension> {
         id = "686712"
         changelogType = "markdown"
         changelog = file("../../description/out/pandoc-release_notes.md")
-        releaseType = "beta"
-        supported_minecraft_versions.forEach {
-            if (!it.toLowerCase().contains("pre") && !it.toLowerCase().contains("shanpshot")) {
-                this.addGameVersion(it)
-            }
+        releaseType = "release"
+        supported_minecraft_versions_curseforge.forEach {
+            this.addGameVersion(it)
         }
         val forgeReobfJar = tasks.named<Jar>("shadowJar").get()
         val remappedJarFile = forgeReobfJar.archiveFile.get().asFile
@@ -593,15 +588,17 @@ modrinth {
     val forgeReobfJar = tasks.named<Jar>("shadowJar").get()
     val remappedJarFile = forgeReobfJar.archiveFile
     uploadFile.set(remappedJarFile as Any) // This is the java jar task. If it can't find the jar, try 'jar.outputs.getFiles().asPath' in place of 'jar'
-    gameVersions.addAll(supported_minecraft_versions)
+    gameVersions.addAll(supported_minecraft_versions_modrinth)
     logger.lifecycle("""
         +*************************************************+
         Will release ${remappedJarFile.get().asFile.path}
         +*************************************************+
     """.trimIndent())
-    versionName.set("IPN $mod_version for $mod_loader$clasifier $minecraft_version_string")
+    versionName.set("IPN Rejects $mod_version for $mod_loader$clasifier $minecraft_version_string")
     this.changelog.set(project.rootDir.resolve("description/out/pandoc-release_notes.md").readText())
-    loaders.add(mod_loader)
+    modrinth_mod_loaders.forEach {
+        loaders.add(it)
+    }
     dependencies.set(
         mutableListOf(
             ModDependency("ordsPcFz", "required"),

@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.anti_ad.mc.ipnrejects.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap":             "ipn-rejects.refmap.json",
+  "mixins": [
+
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "plugin": "org.anti_ad.mc.ipnrejects.forge.IPNMixinPlugin"
+}

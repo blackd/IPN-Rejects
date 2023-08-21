@@ -1,6 +1,7 @@
 /*
  * Inventory Profiles Next
  *
+ *   Copyright (c) 2019-2020 jsnimda <7615255+jsnimda@users.noreply.github.com>
  *   Copyright (c) 2021-2022 Plamen K. Kosseff <p.kosseff@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,36 +18,26 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+package org.anti_ad.mc.ipnrejects.forge;
 
-rootProject.name = "IPNRejects"
-
-include("platforms:fabric-1.20")
-include("platforms:fabric-1.19")
-include("platforms:fabric-1.18.2")
-
-include("platforms:forge-1.18.2")
-include("platforms:forge-1.19")
-include("platforms:forge-1.20")
+import net.minecraftforge.event.TickEvent.ClientTickEvent;
+import net.minecraftforge.event.TickEvent.Phase;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.anti_ad.mc.ipnrejects.events.management.TicksDispatcher;
 
 
-pluginManagement {
-    repositories {
-        maven(url = "https://maven.fabricmc.net") {
-            name = "Fabric"
+/**
+ * ForgeEventHandler
+ */
+public class ForgeTicksSource {
+
+    @SubscribeEvent
+    public void clientTick(ClientTickEvent e) {
+        if (e.phase == Phase.END) {
+            TicksDispatcher.INSTANCE.dispatchPost();
+        } else {
+            TicksDispatcher.INSTANCE.dispatchPre();
         }
-        mavenCentral()
-        google()
-        gradlePluginPortal()
     }
-}
 
-plugins {
-    id("com.gradle.enterprise") version "3.4.1"
-}
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
 }

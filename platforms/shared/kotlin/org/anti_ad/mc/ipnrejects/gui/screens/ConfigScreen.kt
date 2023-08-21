@@ -39,6 +39,7 @@ import org.anti_ad.mc.common.vanilla.alias.getTranslatable
 import org.anti_ad.mc.common.vanilla.alias.glue.I18n
 import org.anti_ad.mc.ipnrejects.Log
 import org.anti_ad.mc.ipnrejects.ModInfo
+import org.anti_ad.mc.ipnrejects.RejectsInfoManager
 import org.anti_ad.mc.ipnrejects.config.Configs
 import org.anti_ad.mc.ipnrejects.config.Debugs
 import org.anti_ad.mc.ipnrejects.config.ModSettings
@@ -74,8 +75,10 @@ object ConfigScreeHelper: BaseConfigKeyToggleBooleanInputHandler() {
              ]"""
         }
 
-        Vanilla.inGameHud().setOverlayMessage(TextSerializer.fromJson(message()),
-                                              true)
+        TextSerializer.fromJson(message())?.let {
+            Vanilla.inGameHud().setOverlayMessage(it,
+                                                  true)
+        }
     }
 
     fun finish() {
@@ -134,7 +137,7 @@ class ConfigScreen(private val gui: Boolean = false) : ConfigScreenBase(getTrans
     }
 
     override fun closeScreen() {
-        InfoManager.event(if (gui) "gui/" else {""} + "closeConfig")
+        RejectsInfoManager.event(if (gui) "gui/" else {""} + "closeConfig")
         storedSelectedIndex = selectedIndex
         SaveLoadManager.save()
         super.closeScreen()

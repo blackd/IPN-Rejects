@@ -32,7 +32,10 @@ import org.anti_ad.mc.ipnrejects.buildsrc.registerMinimizeJarTask
 import org.anti_ad.mc.ipnrejects.buildsrc.loom_version
 import proguard.gradle.ProGuardTask
 
-val supported_minecraft_versions = listOf("1.20")
+val supported_minecraft_versions_modrinth = listOf("1.20", "1.20.1", "23w33a")
+val supported_minecraft_versions_curseforge = listOf("Fabric", "Quilt", "1.20", "1.20.1", "1.20-Snapshot")
+val modrinth_mod_loaders = listOf("fabric", "quilt")
+
 val mod_loader = "fabric"
 val mod_version = project.version.toString()
 val minecraft_version = "1.20"
@@ -53,7 +56,7 @@ buildscript {
 logger.lifecycle("""
     ***************************************************
     Processing "${project.path}"
-    supported versions: $supported_minecraft_versions
+    supported versions: $supported_minecraft_versions_modrinth
     loader: $mod_loader
     mod version: $mod_version
     building against MC: $minecraft_version
@@ -247,13 +250,9 @@ configure<CurseExtension> {
         changelogType = "markdown"
         changelog = file("../../description/out/pandoc-release_notes.md")
         releaseType = "release"
-        supported_minecraft_versions.forEach {
-            if (!it.toLowerCase().contains("pre") && !it.toLowerCase().contains("shanpshot")) {
-                this.addGameVersion(it)
-            }
+        supported_minecraft_versions_curseforge.forEach {
+            this.addGameVersion(it)
         }
-        this.addGameVersion("Fabric")
-        this.addGameVersion("Quilt")
         val fabricRemapJar = tasks.named<org.gradle.jvm.tasks.Jar>("remapJar").get()
         val remappedJarFile = fabricRemapJar.archiveFile.get().asFile
         logger.lifecycle("""
@@ -295,18 +294,17 @@ modrinth {
     val fabricRemapJar = tasks.named<org.gradle.jvm.tasks.Jar>("remapJar").get()
     val remappedJarFile = fabricRemapJar.archiveFile
     uploadFile.set(remappedJarFile as Any) // This is the java jar task. If it can't find the jar, try 'jar.outputs.getFiles().asPath' in place of 'jar'
-    gameVersions.addAll(supported_minecraft_versions.filter {
-        !it.toLowerCase().contains("snapshot")
-    })
+    gameVersions.addAll(supported_minecraft_versions_modrinth)
     logger.lifecycle("""
         +*************************************************+
         Will release ${remappedJarFile.get().asFile.path}
         +*************************************************+
     """.trimIndent())
-    versionName.set("IPN $mod_version for $mod_loader $minecraft_version_string")
+    versionName.set("IPN Rejects $mod_version for $mod_loader $minecraft_version_string")
     this.changelog.set(project.rootDir.resolve("description/out/pandoc-release_notes.md").readText())
-    loaders.add(mod_loader)
-
+    modrinth_mod_loaders.forEach {
+        loaders.add(it)
+    }
     dependencies.set(
         mutableListOf(
             ModDependency("P7dR8mSH", "required"),

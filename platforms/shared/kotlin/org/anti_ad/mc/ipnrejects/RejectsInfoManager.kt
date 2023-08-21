@@ -20,7 +20,7 @@
 package org.anti_ad.mc.ipnrejects
 
 import org.anti_ad.mc.common.TellPlayer
-import org.anti_ad.mc.common.gui.widgets.ButtonWidget
+import org.anti_ad.mc.common.gui.widgets.CustomButtonWidget
 import org.anti_ad.mc.common.gui.widgets.ConfigButtonInfo
 import org.anti_ad.mc.common.moreinfo.InfoManagerBase
 
@@ -77,7 +77,7 @@ object RejectsInfoManager: InfoManagerBase() {
         override val buttonText: String
             get() = I18n.translate("ipnrejects.gui.config.button.do_version_check")
 
-        override fun onClick(widget: ButtonWidget) {
+        override fun onClick(widget: CustomButtonWidget) {
             doCheckVersion()
         }
     }

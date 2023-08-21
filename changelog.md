@@ -1,12 +1,17 @@
 <!-- latest begin -->
 
-### v1.0.6
+### v1.0.8
 
-- Proper 1.20 Fabric support.
-- Fixes disable screen shake on damage for 1.19.4 and 1.20 Fabric  
+- Added forge 1.20/.1 support
+- added fabric 23w33a support
 
 <!-- latest end -->
 <!-- rest begin -->
+
+### v1.0.6
+
+- Proper 1.20 Fabric support.
+- Fixes disable screen shake on damage for 1.19.4 and 1.20 Fabric
 
 ### v1.0.5
 

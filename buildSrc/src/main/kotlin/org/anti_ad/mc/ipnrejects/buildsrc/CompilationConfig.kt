@@ -24,25 +24,18 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.ExtraPropertiesExtension
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.bundling.Jar
-import org.gradle.api.tasks.bundling.ZipEntryCompression
 import org.gradle.api.tasks.compile.JavaCompile
-import org.gradle.api.tasks.javadoc.Javadoc
 import org.gradle.kotlin.dsl.*
 
 import org.gradle.language.jvm.tasks.ProcessResources
 
-fun Project.configureCompilation(is18: Boolean = false, jarBaseName: String) {
+fun Project.configureCompilation(javaVersion: JavaVersion = JavaVersion.VERSION_17, jarBaseName: String) {
     apply(plugin = "maven-publish")
     apply(plugin = "idea")
 
     configure<JavaPluginExtension> {
-        if (is18) {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
-        } else {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
-        }
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
 
     tasks.withType<JavaCompile> {
@@ -65,11 +58,10 @@ fun Project.configureCompilation(is18: Boolean = false, jarBaseName: String) {
                     "SOURCE" to properties["ipnext.scm"],
                     "ISSUES" to properties["ipnext.tracker"],
                     "LICENSE" to properties["ipnext.license"],
-                    "LIBIPN_VERSION" to (project.extensions["ext"] as ExtraPropertiesExtension)["libIPN_version"]
-                )
-            )
+                    "LIBIPN_VERSION" to (project.extensions["ext"] as ExtraPropertiesExtension)["libIPN_version"]))
         }
     }
+
     tasks.withType<Jar> {
         archiveBaseName.set("$jarBaseName-${archiveBaseName.get()}")
         from("../LICENSE", "../../LICENSE")

@@ -18,19 +18,23 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.anti_ad.mc.ipnrejects.buildsrc.getGitHash
 import org.anti_ad.mc.ipnrejects.buildsrc.loom_version
+import org.anti_ad.mc.ipnrejects.buildsrc.getGitHash
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 
 val versionObj = Version("1", "0", "8",
                          preRelease = (System.getenv("IPNEXT_RELEASE") == null))
 
+val loomv = loom_version
+
 
 repositories {
     google()
     gradlePluginPortal()
     mavenCentral()
+    mavenLocal()
     maven(url = "https://maven.fabricmc.net") {
         name = "Fabric"
     }
@@ -42,52 +46,38 @@ repositories {
 
 
 plugins {
-    `kotlin-dsl`
-    kotlin("jvm") version "1.8.10"
-    kotlin("plugin.serialization") version "1.8.10"
+    kotlin("jvm") version "2.0.0"
+    kotlin("plugin.serialization") version "2.0.0"
 
 
     idea
     `java-library`
     `maven-publish`
-    signing
-    antlr
-    id("com.github.johnrengelman.shadow") version "7.1.2" apply false
+    id("idea")
+    id("io.github.goooler.shadow") version "8+" apply false
 
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0" apply true
-    id("fabric-loom") version(org.anti_ad.mc.ipnrejects.buildsrc.loom_version) apply false
+    id("fabric-loom").version("1.6-SNAPSHOT") apply false
     id("com.matthewprenger.cursegradle") version "1.4.+" apply false
     id("com.modrinth.minotaur") version "2.+" apply false
+    id("net.neoforged.gradle.userdev") version "7.0.145" apply false
 }
 
-nexusPublishing {
-    repositories {
-        sonatype {
-            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
-            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
-        }
-    }
-}
-
-
-
-
-
-// This is here, but it looks like it's not inherited by the child projects
 tasks.named<KotlinCompile>("compileKotlin") {
-    kotlinOptions {
-        jvmTarget = "1.8"
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_21)
         freeCompilerArgs = listOf("-opt-in=kotlin.ExperimentalStdlibApi")
     }
 }
 
-evaluationDependsOnChildren()
+
 
 allprojects {
     version = versionObj.toString()
-    group = "org.anti-ad.mc"
+    //group = "org.anti-ad.mc"
     ext.set("mod_artefact_version", versionObj.toCleanString())
-    ext.set("libIPN_version", "4.0.0")
+    ext.set("mod_artefact_is_release", versionObj.isRelease())
+    ext.set("libIPN_version", "6.0.0")
 
     tasks.withType<JavaCompile>().configureEach {
         options.isFork = true
@@ -96,14 +86,17 @@ allprojects {
 
     tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions {
-            languageVersion = "1.8"
-            jvmTarget = "17"
             freeCompilerArgs = mutableListOf("-opt-in=kotlin.ExperimentalStdlibApi", "-opt-in=kotlin.RequiresOptIn") + freeCompilerArgs
+            languageVersion = "2.0"
+            jvmTarget = "21"
         }
         this.incremental = true
     }
 
 }
+
+evaluationDependsOnChildren()
+
 
 tasks.named<Jar>("jar") {
     enabled = false
@@ -127,25 +120,44 @@ tasks.register("owner-testing-env") {
     }
 }
 
+val cleanSnapshots = tasks.register<Delete>("cleanSnapshots") {
+    group = "build"
+    this.setDelete(rootProject.layout.projectDirectory.dir("repos/snapshots"))
+    doLast {
+        delete {
+            rootProject.layout.projectDirectory.dir("repos/snapshots")
+        }
+    }
+}
+
+tasks.getByName("clean").dependsOn(cleanSnapshots)
+
+/*
+tasks.register<DefaultTask>("createMcpToSrg") {
+    gradle.includedBuilds.forEach {
+        dependsOn(it.task(":createMcpToSrg"))
+    }
+}
+*/
+
 tasks.register<Copy>("copyPlatformJars") {
     subprojects.filter {
         val isFabric = it.name.startsWith("fabric")
-        val isForge = it.name.startsWith("forge")
+        val isForge = it.name.startsWith("forge") || it.name.startsWith("neoforge")
         isFabric || isForge
     }.forEach {
         val isForge = !it.name.startsWith("fabric")
-        val taskName = if (isForge) { "shadowJar" } else { "remapJar" }
-        val jarTask = it.tasks.named<org.gradle.jvm.tasks.Jar>(taskName)
+        val jarTask = it.tasks.named<DefaultTask>("minimizeJar")
         dependsOn(jarTask)
         if (isForge) {
-            val endTask = it.tasks.named("reobfJar")
+            val endTask = it.tasks.named("jar")
             dependsOn(endTask)
         }
         val jarFile = jarTask.get()
-        val jarPath = it.layout.buildDirectory.file("libs/" + jarFile.archiveFileName.get())
+        val jarPath = jarFile.outputs.files.first()
         logger.debug("""
             *************************
-              ${it.path} finalized mod jar is ${jarPath.get().asFile.absoluteFile}
+              ${it.path} finalized mod jar is $jarPath
             *************************
         """.trimIndent())
         from(jarPath)
@@ -153,13 +165,9 @@ tasks.register<Copy>("copyPlatformJars") {
 
     into(layout.buildDirectory.dir("libs"))
 
-    subprojects.forEach {
-        it.getTasksByName("minimizeJar", false).forEach { t ->
-            dependsOn(t)
-        }
-    }
     finalizedBy("owner-testing-env")
 }
+
 
 
 tasks.named<DefaultTask>("build") {
@@ -211,7 +219,7 @@ class Version(val major: String, val minor: String, val revision: String, val pr
         return if (!preRelease)
             "$major.$minor.$revision"
         else //Only use git hash if it's a prerelease.
-            "$major.$minor.$revision-BETA+C$gitHash-SNAPSHOT"
+            "$major.$minor.$revision-SNAPSHOT"
     }
 
     fun toCleanString(): String {
@@ -220,4 +228,6 @@ class Version(val major: String, val minor: String, val revision: String, val pr
         else //Only use git hash if it's a prerelease.
             "$major.$minor.$revision-SNAPSHOT"
     }
+
+    fun isRelease() = !preRelease
 }

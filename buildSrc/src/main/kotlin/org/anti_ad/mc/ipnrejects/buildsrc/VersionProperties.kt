@@ -17,7 +17,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 package org.anti_ad.mc.ipnrejects.buildsrc
 
-const val loom_version = "1.1-SNAPSHOT"
+enum class Loaders {
+    MODRINTH,
+    CURSEFORGE
+}
+
+const val loom_version = "1.6-SNAPSHOT"

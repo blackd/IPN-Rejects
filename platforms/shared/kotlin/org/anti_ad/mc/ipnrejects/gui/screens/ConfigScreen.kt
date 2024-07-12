@@ -20,6 +20,9 @@
 
 package org.anti_ad.mc.ipnrejects.gui.screens
 
+import org.anti_ad.mc.alias.text.TextSerializer
+import org.anti_ad.mc.alias.text.fromSerializedJson
+import org.anti_ad.mc.alias.text.getTranslatable
 import org.anti_ad.mc.common.config.CategorizedMultiConfig
 import org.anti_ad.mc.common.config.builder.ConfigDeclaration
 import org.anti_ad.mc.common.config.builder.addTo
@@ -35,7 +38,6 @@ import org.anti_ad.mc.common.moreinfo.InfoManager
 import org.anti_ad.mc.common.vanilla.Vanilla
 import org.anti_ad.mc.common.vanilla.*
 import org.anti_ad.mc.common.vanilla.alias.*
-import org.anti_ad.mc.common.vanilla.alias.getTranslatable
 import org.anti_ad.mc.common.vanilla.alias.glue.I18n
 import org.anti_ad.mc.ipnrejects.Log
 import org.anti_ad.mc.ipnrejects.ModInfo
@@ -75,7 +77,7 @@ object ConfigScreeHelper: BaseConfigKeyToggleBooleanInputHandler() {
              ]"""
         }
 
-        TextSerializer.fromJson(message())?.let {
+        fromSerializedJson(message())?.let {
             Vanilla.inGameHud().setOverlayMessage(it,
                                                   true)
         }

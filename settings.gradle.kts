@@ -20,20 +20,19 @@
 
 rootProject.name = "IPNRejects"
 
-include("platforms:fabric-1.20")
-include("platforms:fabric-1.19")
-include("platforms:fabric-1.18.2")
-
-include("platforms:forge-1.18.2")
-include("platforms:forge-1.19")
-include("platforms:forge-1.20")
-
+include("platforms:fabric-1.21")
+include("platforms:forge-1.21")
+include("platforms:neoforge-1.21")
 
 pluginManagement {
     repositories {
         maven(url = "https://maven.fabricmc.net") {
             name = "Fabric"
         }
+        maven (url = "https://maven.minecraftforge.net/") {
+            name = "MinecraftForge"
+        }
+        maven ("https://maven.neoforged.net/releases")
         mavenCentral()
         google()
         gradlePluginPortal()
@@ -42,6 +41,7 @@ pluginManagement {
 
 plugins {
     id("com.gradle.enterprise") version "3.4.1"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
 gradleEnterprise {

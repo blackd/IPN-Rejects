@@ -20,18 +20,17 @@
 package org.anti_ad.mc.ipnrejects.buildsrc
 
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Configuration
-import org.gradle.api.artifacts.Dependency
 import org.gradle.kotlin.dsl.*
 import org.gradle.kotlin.dsl.dependencies
-import java.util.concurrent.TimeUnit
 
 //var shadedApi: Configuration? = null
 
 fun Project.configureDependencies() {
+/*
     apply(plugin = "kotlin")
     apply(plugin = "java")
     apply(plugin = "java-library")
+*/
 
 
 
@@ -43,30 +42,26 @@ fun Project.configureDependencies() {
         val shadedImplementation = create("shadedImplementation")
         shaded.extendsFrom(shadedImplementation)
         getByName("implementation").extendsFrom(shadedImplementation)
-        val runHelperApi = create("runHelperApi")
-        runHelperApi.extendsFrom(getByName("api"))
-        //getByName("modApi").extendsFrom(shadedApi)
     }
 
     repositories {
-
+        gradlePluginPortal()
+        mavenCentral()
+        mavenLocal()
         maven {
-            name = "libIPN-Snapshots"
+            name = "InvTweaksEmuForIPN-Snapshots"
             this.mavenContent {
                 this.snapshotsOnly()
             }
             url = uri("https://maven.ipn-mod.org/snapshots")
         }
         maven {
-            name = "libIPN-Releases"
+            name = "InvTweaksEmuForIPN-Releases"
             this.mavenContent {
                 this.releasesOnly()
             }
             url = uri("https://maven.ipn-mod.org/releases")
         }
-
-        gradlePluginPortal()
-        mavenCentral()
         maven { url = uri("https://maven.enginehub.org/repo/") }
         maven { url = uri("https://repo.codemc.org/repository/maven-public") }
         //maven { url = uri("https://papermc.io/repo/repository/maven-public/") }
@@ -76,30 +71,10 @@ fun Project.configureDependencies() {
         maven { url = uri("https://hub.spigotmc.org/nexus/content/repositories/releases/") }
         maven { url = uri("https://maven.fabricmc.net/") }
         maven { url = uri("https://maven.shedaniel.me") }
-
-        maven {
-            url = uri("https://www.cursemaven.com")
-            content {
-                includeGroup ("curse.maven")
-            }
-        }
     }
 
     dependencies {
         "api"("org.jetbrains:annotations:20.1.0")
-        "shadedApi"("com.yevdo:jwildcard:1.4")
-
-        val antlrVersion = "4.9.3"
-        "antlr"("org.antlr:antlr4:$antlrVersion")
-        "shadedApi"("org.antlr:antlr4-runtime:$antlrVersion")
-
-
-    }
-
-    configurations.all {
-        resolutionStrategy {
-            cacheChangingModulesFor(0, TimeUnit.SECONDS)
-        }
     }
 }
 
@@ -110,54 +85,43 @@ fun Project.fabricCommonDependency(minecraft_version: Any,
                                    libIPN_version: Any? = null,
                                    modmenu_version: Any? = null) {
 
+
+
     configurations.all {
         resolutionStrategy {
             force("net.fabricmc:fabric-loader:$loader_version")
-            force("org.anti_ad.mc:libIPN-$libIPN_version")
         }
     }
 
     dependencies {
 
-        "api"("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
-        "api"("org.jetbrains.kotlin:kotlin-stdlib-common:1.8.10")
-        "api"("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10")
-        "api"("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10")
+        "api"(kotlin("stdlib"))
         "api"(kotlin("reflect"))
-        "implementation"("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-        "implementation"("org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.0")
+        "implementation"("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0")
+        "implementation"("org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.0")
 
         "minecraft"("com.mojang:minecraft:$minecraft_version")
         "mappings"("net.fabricmc:yarn:$mappings_version:v2")
 
         "modImplementation"("net.fabricmc:fabric-loader:$loader_version")
         "modImplementation"("net.fabricmc.fabric-api:fabric-api:$fabric_api_version")
+
         modmenu_version?.let {
-            "modImplementation"("com.terraformersmc:modmenu:$modmenu_version")
+            "modApi"("com.terraformersmc:modmenu:$modmenu_version")
         }
 
         libIPN_version?.let {
-            "modApi"("org.anti_ad.mc:libIPN-$libIPN_version")  {
-                this.isChanging = true
+            "modCompileOnly"("org.anti_ad.mc:libIPN-$libIPN_version:dev") {
+                setChanging(true)
+            }
+            "modRuntimeOnly"("org.anti_ad.mc:libIPN-$libIPN_version") {
+                setChanging(true)
             }
         }
 
-        "modRuntimeOnly"("net.fabricmc:fabric-language-kotlin:1.9.2+kotlin.1.8.10")
+        "modRuntimeOnly"("net.fabricmc:fabric-language-kotlin:1.11.0+kotlin.2.0.0")
     }
-
 }
-
-private fun ___fgdeobf(id: Any): Dependency {
-    TODO()
-}
-
-private var __fgdeobf: (Any) -> Dependency = ::___fgdeobf
-
-var Project.fgdeobf: (Any) -> Dependency
-    get() = __fgdeobf
-    set(value) {
-        __fgdeobf = value
-    }
 
 fun Project.forgeCommonDependency(minecraft_version: Any,
                                   loader_version: Any,
@@ -166,56 +130,78 @@ fun Project.forgeCommonDependency(minecraft_version: Any,
 
     dependencies {
 
-        "api"(fgdeobf("org.anti_ad.mc:libIPN-$libIPN_version"))
-        val kffverstr = kotlin_for_forge_version.toString()[0]
 
-        if (kffverstr == '4' || kffverstr == '3') {
-            "compileOnlyApi"("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
-            "compileOnlyApi"("org.jetbrains.kotlin:kotlin-stdlib-common:1.8.10")
-            "compileOnlyApi"("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10")
-            "compileOnlyApi"("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10")
-            "compileOnlyApi"(kotlin("reflect"))
-            "compileOnlyApi"("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-            "compileOnlyApi"("org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.0")
-        } else if (kffverstr == '1') {
-            "api"("org.jetbrains.kotlin:kotlin-stdlib:1.6.21")
-            "api"("org.jetbrains.kotlin:kotlin-stdlib-common:1.6.21")
-            "api"("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21")
-            "api"("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21")
-            "api"(kotlin("reflect"))
-            "api"("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-        } else {
-            "api"("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
-            "api"("org.jetbrains.kotlin:kotlin-stdlib-common:1.8.10")
-            "api"("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10")
-            "api"("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10")
-            "api"(kotlin("reflect"))
-            "implementation"("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-            "implementation"("org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.0")
+        libIPN_version?.let {
+            "compileOnly"("org.anti_ad.mc:libIPN-$libIPN_version:dev") {
+                isTransitive = false
+                exclude("org.jetbrains.kotlin")
+                exclude("ca.solo-studios")
+                isChanging = true
+            }
+            "runtimeOnly"("org.anti_ad.mc:libIPN-$libIPN_version") {
+                exclude("org.jetbrains.kotlin")
+                isChanging = true
+            }
+        }
 
-            "runHelperApi"("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-            "runHelperApi"("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
-            "runHelperApi"("org.jetbrains.kotlin:kotlin-stdlib-common:1.8.10")
-            "runHelperApi"("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10")
-            "runHelperApi"("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10")
-            "runHelperApi"("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
+
+        "implementation"("thedarkcolour:kotlinforforge:$kotlin_for_forge_version") {
+/*
+            exclude("org.jetbrains.kotlin")
+*/
+        }
+
+/*
+        "implementation"("thedarkcolour:kfflang:$kotlin_for_forge_version") {
+            exclude("org.jetbrains.kotlin")
+            isChanging = true
+        }
+        "implementation"("thedarkcolour:kfflib:$kotlin_for_forge_version") {
+            exclude("org.jetbrains.kotlin")
+            isChanging =  true
+        }
+        "implementation"("thedarkcolour:kffmod:$kotlin_for_forge_version") {
+            exclude("org.jetbrains.kotlin")
+            isChanging = true
+        }
+*/
+
+        "implementation"("net.sf.jopt-simple:jopt-simple:5.0.4") {
+            version {
+                strictly("5.0.4")
+            }
         }
 
         "minecraft"("net.minecraftforge:forge:$minecraft_version-$loader_version")
-        "api"("org.spongepowered:mixin:0.8.3-SNAPSHOT")
-        "annotationProcessor"("org.spongepowered:mixin:0.8.3-SNAPSHOT:processor")
-        "testAnnotationProcessor"("org.spongepowered:mixin:0.8.3-SNAPSHOT:processor")
-        "implementation"("thedarkcolour:kotlinforforge:$kotlin_for_forge_version") {
-            this.isChanging = true
+    }
+}
+
+fun Project.neoForgeCommonDependency(minecraft_version: Any,
+                                     loader_version: Any,
+                                     kotlin_for_forge_version: Any,
+                                     libIPN_version: Any?) {
+    dependencies {
+
+        "implementation"("net.neoforged:neoforge:${loader_version}")
+        "implementation"("thedarkcolour:kotlinforforge-neoforge:$kotlin_for_forge_version")
+        "runtimeOnly"("com.yevdo:jwildcard:1.4")
+        "runtimeOnly"("ca.solo-studios:kt-fuzzy-jvm:0.1.0") {
+            exclude("org.jetbrains.kotlin")
         }
 
+        libIPN_version?.let {
+            "compileOnly"("org.anti_ad.mc:libIPN-$libIPN_version:dev") {
+                setChanging(true)
+            }
+            "runtimeOnly"("org.anti_ad.mc:libIPN-$libIPN_version") {
+                setChanging(true)
+            }
+        }
 
-
-        //these are here, so we add them during the runClient/Server
-        //for some reason they are not added by any of the default api/implementation...
-
-
-
+        "compileOnly"("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.7.1") {
+            //exclude("org.jetbrains.kotlin")
+        }
+        "compileOnly"("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.1")
 
     }
 }

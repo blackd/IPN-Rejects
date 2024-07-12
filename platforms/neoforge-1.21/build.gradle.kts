@@ -28,7 +28,6 @@ import org.anti_ad.mc.ipnrejects.buildsrc.forgeCommonAfterEvaluate
 import org.anti_ad.mc.ipnrejects.buildsrc.neoForgeCommonDependency
 import org.anti_ad.mc.ipnrejects.buildsrc.platformsCommonConfig
 import org.anti_ad.mc.ipnrejects.buildsrc.registerMinimizeJarTask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import proguard.gradle.ProGuardTask
 
 val supported_minecraft_versions = listOf("1.21")
@@ -65,16 +64,6 @@ buildscript {
         classpath("com.guardsquare:proguard-gradle:7+")
     }
 }
-
-
-/*
-configurations.all {
-    resolutionStrategy.cacheDynamicVersionsFor(30, "seconds")
-}
-
- */
-
-
 
 plugins {
     kotlin("jvm")
@@ -192,15 +181,9 @@ val shadowJarTask = tasks.named<ShadowJar>("shadowJar") {
     exclude("kotlin/**")
     exclude("kotlinx/**")
 
-    //exclude("META-INF/**")
-    //exclude("**/*.kotlin_metadata")
-    //exclude("**/*.kotlin_module")
-    //exclude("**/*.kotlin_builtins")
-    //exclude("**/*_ws.class") // fixme find a better solution for removing *.ws.kts
-    //exclude("**/*_ws$*.class")
     exclude("**/*.stg")
     exclude("**/*.st")
-    exclude("mappings/mappings.tiny") // before kt, build .jar don"t have this folder (this 500K thing)
+    exclude("mappings/mappings.tiny")
     exclude("com/ibm/**")
     exclude("org/glassfish/**")
     exclude("org/intellij/**")
@@ -208,13 +191,11 @@ val shadowJarTask = tasks.named<ShadowJar>("shadowJar") {
     exclude("org/jline/**")
     exclude("net/minecraftforge/**")
     exclude("io/netty/**")
-    //exclude("mappings/mappings.tiny") // before kt, build .jar don"t have this folder (this 500K thing)
+
     exclude("META-INF/maven/**")
     exclude("META-INF/com.android.tools/**")
     exclude("META-INF/proguard/**")
     exclude("META-INF/services/**")
-    //exclude("META-INF/LICENSE")
-    //exclude("META-INF/README")
 
     dependsOn("copyMixinMappings")
     minimize()
@@ -226,7 +207,7 @@ val proguard by tasks.registering(ProGuardTask::class) {
     printmapping {
         project.layout.buildDirectory.file("proguard/mappings.map")
     }
-    // project(":platforms:fabric_1_17").tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar").get().archiveFileName
+
     val inName = shadowJarTask.archiveFile.get().asFile.absolutePath
 
     injars(inName)
@@ -357,7 +338,7 @@ configure<CurseExtension> {
         changelog = file("../../description/out/pandoc-release_notes.md")
         releaseType = "release"
         supported_minecraft_versions.forEach {
-            if (!it.toLowerCase().contains("pre") && !it.toLowerCase().contains("shanpshot")) {
+            if (!it.lowercase().contains("pre") && !it.lowercase().contains("shanpshot")) {
                 this.addGameVersion(it)
             }
         }

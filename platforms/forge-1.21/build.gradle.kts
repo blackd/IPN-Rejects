@@ -188,15 +188,9 @@ val shadowJarTask = tasks.named<ShadowJar>("shadowJar") {
     exclude("kotlin/**")
     exclude("kotlinx/**")
 
-    //exclude("META-INF/**")
-    //exclude("**/*.kotlin_metadata")
-    //exclude("**/*.kotlin_module")
-    //exclude("**/*.kotlin_builtins")
-    //exclude("**/*_ws.class") // fixme find a better solution for removing *.ws.kts
-    //exclude("**/*_ws$*.class")
     exclude("**/*.stg")
     exclude("**/*.st")
-    exclude("mappings/mappings.tiny") // before kt, build .jar don"t have this folder (this 500K thing)
+    exclude("mappings/mappings.tiny")
     exclude("com/ibm/**")
     exclude("org/glassfish/**")
     exclude("org/intellij/**")
@@ -204,7 +198,7 @@ val shadowJarTask = tasks.named<ShadowJar>("shadowJar") {
     exclude("org/jline/**")
     exclude("net/minecraftforge/**")
     exclude("io/netty/**")
-    //exclude("mappings/mappings.tiny") // before kt, build .jar don"t have this folder (this 500K thing)
+
     exclude("META-INF/maven/**")
     exclude("META-INF/com.android.tools/**")
     exclude("META-INF/proguard/**")

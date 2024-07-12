@@ -1,12 +1,18 @@
 <!-- latest begin -->
 
+### v1.1.0
+
+- support for fabric 1.20.6 and 1.21
+- support for forge 1.20.6 and 1.21
+- support for neoforge 1.21
+
+<!-- latest end -->
+<!-- rest begin -->
+
 ### v1.0.8
 
 - Added forge 1.20/.1 support
 - added fabric 23w33a support
-
-<!-- latest end -->
-<!-- rest begin -->
 
 ### v1.0.6
 

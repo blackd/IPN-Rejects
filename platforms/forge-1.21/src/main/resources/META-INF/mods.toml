@@ -47,7 +47,7 @@ Collection of too controversial features that were removed from IPN
 [[dependencies.ipnrejects]]
     modId="forge"
     mandatory=true
-    versionRange="[51,)"
+    versionRange="[50.1,)"
     ordering="NONE"
     side="CLIENT"
 

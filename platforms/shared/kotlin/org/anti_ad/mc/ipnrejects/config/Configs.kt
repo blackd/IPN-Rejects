@@ -44,7 +44,6 @@ object ModSettings : ConfigDeclaration {
                                                             KeybindSettings.INGAME_DEFAULT)
         .CATEGORY("$CONFIG_CATEGORY.privacy")
     val ENABLE_UPDATES_CHECK                 /**/ by bool(true)
-    val ENABLE_ANALYTICS                     /**/ by bool(false)
 
         .CATEGORY("$CONFIG_CATEGORY.debug")
     val DEBUG                                /**/ by bool(false)

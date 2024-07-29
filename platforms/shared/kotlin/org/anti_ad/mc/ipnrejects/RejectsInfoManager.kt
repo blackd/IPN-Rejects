@@ -49,7 +49,7 @@ object RejectsInfoManager: InfoManagerBase() {
 
     private val versionCheckUrl = URL("https://ipn.anti-ad.org/ipn/rejectsVersionCheckV3")
 
-    override var isEnabled: () -> Boolean  = { ModSettings.ENABLE_ANALYTICS.value }
+    override var isEnabled: () -> Boolean  = { false }
 
 
     fun doCheckVersion() {

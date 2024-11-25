@@ -21,7 +21,6 @@ package org.anti_ad.mc.ipnrejects
 
 import org.anti_ad.mc.alias.SharedConstants
 import org.anti_ad.mc.ipnrejects.cheats.ItemUseCooldown
-import org.anti_ad.mc.ipnrejects.config.Debugs
 import org.anti_ad.mc.ipnrejects.config.ModSettings
 import org.anti_ad.mc.ipnrejects.config.SaveLoadManager
 import org.anti_ad.mc.ipnrejects.events.management.OnetimeDelayedInit
@@ -41,8 +40,6 @@ fun specificInit() {
     OnetimeDelayedInit.register(Int.MIN_VALUE) {
         ModInfo.MOD_VERSION = ModInfo.getModVersion()
         initInfoManager()
-        Log.shouldDebug = { ModSettings.DEBUG.booleanValue }
-        Log.shouldTrace = { ModSettings.DEBUG.booleanValue && Debugs.TRACE_LOGS.booleanValue }
 
 
         ItemUseCooldown.init()

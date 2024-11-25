@@ -33,8 +33,8 @@ import org.anti_ad.mc.ipnrejects.buildsrc.registerMinimizeJarTask
 import proguard.gradle.ProGuardTask
 
 val supported_minecraft_versions = mapOf(
-        Loaders.MODRINTH to listOf("1.21", "1.20.6"),
-        Loaders.CURSEFORGE to listOf("1.21", "1.20.6"))
+        Loaders.MODRINTH to listOf("1.21", "1.21.1", "1.21.3"),
+        Loaders.CURSEFORGE to listOf("1.21", "1.21.1", "1.21.3"))
 val mod_loader = "forge"
 val mod_version = project.version
 val minecraft_version = "1.21"

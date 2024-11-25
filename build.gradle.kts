@@ -24,7 +24,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 
-val versionObj = Version("1", "1", "1",
+val versionObj = Version("1", "1", "2",
                          preRelease = (System.getenv("IPNEXT_RELEASE") == null))
 
 val loomv = loom_version
@@ -57,10 +57,10 @@ plugins {
     id("io.github.goooler.shadow") version "8+" apply false
 
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0" apply true
-    id("fabric-loom").version("1.6-SNAPSHOT") apply false
+    id("fabric-loom").version("1.7-SNAPSHOT") apply false
     id("com.matthewprenger.cursegradle") version "1.4.+" apply false
     id("com.modrinth.minotaur") version "2.+" apply false
-    id("net.neoforged.gradle.userdev") version "7.0.145" apply false
+    id("net.neoforged.gradle.userdev") version "7.+" apply false
 }
 
 tasks.named<KotlinCompile>("compileKotlin") {
@@ -77,7 +77,7 @@ allprojects {
     //group = "org.anti-ad.mc"
     ext.set("mod_artefact_version", versionObj.toCleanString())
     ext.set("mod_artefact_is_release", versionObj.isRelease())
-    ext.set("libIPN_version", "6.0.0")
+    ext.set("libIPN_version", "6.2.0-SNAPSHOT")
 
     tasks.withType<JavaCompile>().configureEach {
         options.isFork = true

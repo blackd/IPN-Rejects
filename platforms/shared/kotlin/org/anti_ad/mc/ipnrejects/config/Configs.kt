@@ -27,6 +27,7 @@ import org.anti_ad.mc.common.config.builder.CATEGORY
 import org.anti_ad.mc.common.config.builder.*
 import org.anti_ad.mc.common.input.KeybindSettings
 import org.anti_ad.mc.common.vanilla.VanillaUtil
+import org.anti_ad.mc.ipnrejects.ModInfo
 import org.anti_ad.mc.ipnrejects.RejectsInfoManager
 import org.anti_ad.mc.ipnrejects.gui.screens.ConfigScreeHelper.keyToggleBool
 
@@ -76,7 +77,7 @@ fun initMainConfig() {
 }
 
 
-const val FILE_PATH = "ipn-rejects/main-config.json"
+const val FILE_PATH = "main-config.json"
 
 fun registerConfigDeclaration(vararg cd: ConfigDeclaration) {
     when (cd.size) {
@@ -113,7 +114,7 @@ object SaveLoadManager: Savable {
     private val configFolder = VanillaUtil.configDirectory("ipn-rejects")
 
     private val manager: Lazy<ConfigSaveLoadManager> = lazy(LazyThreadSafetyMode.NONE) {
-        ConfigSaveLoadManager(Configs.toMultiConfig(), FILE_PATH)
+        ConfigSaveLoadManager(Configs.toMultiConfig(), "ipn-rejects", FILE_PATH)
     }
 
     override fun load() {

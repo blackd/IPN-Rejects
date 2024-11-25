@@ -33,8 +33,8 @@ import org.anti_ad.mc.ipnrejects.buildsrc.Loaders.*
 import org.anti_ad.mc.ipnrejects.buildsrc.loom_version
 import proguard.gradle.ProGuardTask
 
-val supported_minecraft_versions = mapOf(MODRINTH to listOf("1.21", "1.20.6"),
-                                         CURSEFORGE to listOf("1.21", "1.20.6"))
+val supported_minecraft_versions = mapOf(MODRINTH to listOf("1.21", "1.21.1", "1.21.3", "1.21.4-pre1"),
+                                         CURSEFORGE to listOf("1.21", "1.21.1", "1.21.3", "1.21.4-Snapshot", ))
 val mod_loader = "fabric"
 val mod_version = project.version.toString()
 val minecraft_version = "1.21"

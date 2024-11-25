@@ -20,9 +20,11 @@
 package org.anti_ad.mc.ipnrejects
 
 import org.anti_ad.mc.common.LogBase
+import org.anti_ad.mc.ipnrejects.config.Debugs
+import org.anti_ad.mc.ipnrejects.config.ModSettings
 
-
-object Log: LogBase() {
+object Log: LogBase({ ModSettings.DEBUG.booleanValue },
+                    { ModSettings.DEBUG.booleanValue && Debugs.TRACE_LOGS.booleanValue }) {
     override val id: String
         get() = "IPN Rejects"
 

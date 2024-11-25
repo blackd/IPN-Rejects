@@ -1,11 +1,17 @@
 <!-- latest begin -->
+### v1.1.2
 
+- Updated to latest libIPN
+- support for 1.21.1/2/3/4
+- 1.20.6 is no longer supported
+
+<!-- latest end -->
+<!-- rest begin -->
 ### v1.1.1
 
 - To prove a worthy successor of Forge, NeoForge have broken the API keeping the same major version! So we need new release.
 
-<!-- latest end -->
-<!-- rest begin -->
+
 
 ### v1.1.0
 

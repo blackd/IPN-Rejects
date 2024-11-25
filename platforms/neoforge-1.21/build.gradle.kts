@@ -30,7 +30,7 @@ import org.anti_ad.mc.ipnrejects.buildsrc.platformsCommonConfig
 import org.anti_ad.mc.ipnrejects.buildsrc.registerMinimizeJarTask
 import proguard.gradle.ProGuardTask
 
-val supported_minecraft_versions = listOf("1.21")
+val supported_minecraft_versions = listOf("1.21", "1.21.1", "1.21.3")
 val mod_loader = "neoforge"
 val mod_version = project.version
 val minecraft_version = "1.21"

@@ -1,0 +1,38 @@
+{
+  "ipnrejects.gui.config.title"                                    : "IPN Rejects v%s 設定",
+  "ipnrejects.gui.config.ModSettings"                              : "一般設定",
+  "ipnrejects.gui.config.Cheats"                                   : "作弊",
+  "ipnrejects.gui.config.Debugs"                                   : "除錯",
+
+  "ipnrejects.gui.config.on"                                       : "開啟",
+  "ipnrejects.gui.config.off"                                      : "關閉",
+
+  "ipnrejects.config.category.general_hotkeys"                     : "快捷鍵",
+  "ipnrejects.config.category.privacy"                             : "隱私",
+  "ipnrejects.config.category.debug"                               : "除錯",
+  "ipnrejects.config.category.cheating"                            : "作弊",
+
+  "ipnrejects.config.name.debug"                                   : "除錯",
+  "ipnrejects.config.description.debug"                            : "啟用除錯。\n\n下次開啟設定時，將會出現新的設定頁面。",
+  "ipnrejects.config.name.disable_block_breaking_cooldown"         : "移除破壞方塊的冷卻",
+  "ipnrejects.config.description.disable_block_breaking_cooldown"  : "加快破壞方塊的速度。",
+  "ipnrejects.config.name.disable_item_use_cooldown"               : "移除物品使用的冷卻",
+  "ipnrejects.config.description.disable_item_use_cooldown"        : "加快使用物品的速度……\n\n想像一下以最快的速度投擲藥水。",
+  "ipnrejects.config.name.disable_screen_shaking_on_damage"        : "停用受傷時的畫面晃動",
+  "ipnrejects.config.description.disable_screen_shaking_on_damage" : "當你受到傷害時，畫面將不會晃動。",
+  "ipnrejects.config.name.instant_mining_cooldown"                 : "移除挖掘冷卻",
+  "ipnrejects.config.description.instant_mining_cooldown"          : "加快挖掘速度",
+  "ipnrejects.config.name.enable_analytics"                        : "啟用遙測收集",
+  "ipnrejects.config.description.enable_analytics"                 : "啟用分析。\n僅收集有關模組和使用功能的資訊。\n    不會傳送任何個人資訊。您的 IP 位址不會被儲存。\n    收集到的任何資訊都不會被分享、出售或轉讓給任何人！",
+  "ipnrejects.config.name.enable_cheats"                           : "啟用作弊",
+  "ipnrejects.config.description.enable_cheats"                    : "所有作弊的總開關。",
+  "ipnrejects.config.name.enable_updates_check"                    : "啟用更新檢查",
+  "ipnrejects.config.description.enable_updates_check"             : "如果有新版本的模組可用，則顯示訊息。為了進行檢查，我們只會將以下資訊傳送到我們的伺服器：\n    Minecraft 版本、Fabric 或 Forge、IPN Rejects 版本。\n    您的 IP 位址不會被儲存！",
+  "ipnrejects.config.name.open_config_menu"                        : "顯示設定",
+  "ipnrejects.config.name.trace_logs"                              : "啟用追蹤記錄檔",
+
+  "ipnrejects.update.version"                                      : " 版本：",
+  "ipnrejects.update.available"                                    : " 已推出。\n",
+  "ipnrejects.update.get"                                          : "由此取得：",
+  "ipnrejects.update.or"                                           : " 或 "
+}

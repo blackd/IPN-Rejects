@@ -139,7 +139,7 @@ class ConfigScreen(private val gui: Boolean = false) : ConfigScreenBase(getTrans
     }
 
     override fun closeScreen() {
-        RejectsInfoManager.event(if (gui) "gui/" else {""} + "closeConfig")
+        //RejectsInfoManager.event(if (gui) "gui/" else {""} + "closeConfig")
         storedSelectedIndex = selectedIndex
         SaveLoadManager.save()
         super.closeScreen()

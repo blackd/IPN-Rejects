@@ -46,7 +46,7 @@ fun specificInit() {
             ModSettings.FIRST_RUN.value = false
             SaveLoadManager.save()
         }
-        RejectsInfoManager.event(lazy {"${RejectsInfoManager.loader}/${RejectsInfoManager.mcVersion}/${RejectsInfoManager.version}/started"})
+        //RejectsInfoManager.event(lazy {"${RejectsInfoManager.loader}/${RejectsInfoManager.mcVersion}/${RejectsInfoManager.version}/started"})
     }
 
 }

@@ -39,9 +39,9 @@ val mod_loader = "forge"
 val mod_version = project.version
 val minecraft_version = "1.21"
 val minecraft_version_string = "1.21"
-val forge_version = "51.0.17"
+val forge_version = "51.0.33"
 val mod_artefact_version = project.ext["mod_artefact_version"]
-val kotlin_for_forge_version = "5.3.0"
+val kotlin_for_forge_version = "5.7.0"
 val mappingsMap = mapOf("channel" to "official",
                         "version" to "1.21")
 val libIPN_version = "${project.name}:${project.ext["libIPN_version"]}"
@@ -80,7 +80,7 @@ plugins {
     id("com.matthewprenger.cursegradle")
     id("com.modrinth.minotaur")
     id("io.github.goooler.shadow")
-    id("net.minecraftforge.gradle") version "6.+" apply true
+    id("net.minecraftforge.gradle") version "6.0.26" apply true
 }
 
 configureCommon(JavaVersion.VERSION_21)
@@ -106,12 +106,10 @@ repositories {
         }
     }
     gradlePluginPortal()
-/*
     maven {
         name = "kotlinforforge"
         url = uri("https://thedarkcolour.github.io/KotlinForForge/")
     }
-*/
 }
 
 forgeCommonDependency(minecraft_version,
@@ -121,6 +119,10 @@ forgeCommonDependency(minecraft_version,
 
 dependencies {
 
+}
+
+configurations.getByName("runtimeClasspath") {
+    exclude(group = "org.jetbrains.kotlin")
 }
 
 
@@ -137,7 +139,6 @@ afterEvaluate {
         it.java.destinationDirectory = dir
         it.kotlin.destinationDirectory = dir
     }
-
 }
 
 tasks.withType<JavaCompile>().all {

@@ -24,15 +24,12 @@
     ]
   },
   "mixins": [
-    "mixins.ipn-rejects.json",
     "mixins.ipn-rejects.cheats.json"
   ],
   "accessWidener": "ipn-rejects.accesswidener",
   "depends": {
-    "fabric-resource-loader-v0": "*",
-    "fabricloader": ">=0.14.4",
-    "minecraft": ">=1.20.6 <1.22",
-    "fabric-language-kotlin": ">=1.9.2+kotlin.1.8.10",
-    "libipn": ">=@LIBIPN_VERSION@ <6.3"
+    "minecraft": ">=1.21 <1.22",
+    "fabric-language-kotlin": ">=1.13.1+kotlin.2.1.0",
+    "libipn": ">=@LIBIPN_VERSION@ <6.4"
   }
 }

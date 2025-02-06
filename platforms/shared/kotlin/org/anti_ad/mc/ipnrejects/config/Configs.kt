@@ -22,14 +22,9 @@
 
 package org.anti_ad.mc.ipnrejects.config
 
-import org.anti_ad.mc.common.Savable
 import org.anti_ad.mc.common.config.builder.CATEGORY
 import org.anti_ad.mc.common.config.builder.*
 import org.anti_ad.mc.common.input.KeybindSettings
-import org.anti_ad.mc.common.vanilla.VanillaUtil
-import org.anti_ad.mc.ipnrejects.ModInfo
-import org.anti_ad.mc.ipnrejects.RejectsInfoManager
-import org.anti_ad.mc.ipnrejects.gui.screens.ConfigScreeHelper.keyToggleBool
 
 
 const val CONFIG_CATEGORY = "ipnrejects.config.category"
@@ -39,7 +34,7 @@ object ModSettings : ConfigDeclaration {
     override val builder = createBuilder()
 
         .CATEGORY("§§vgap:3")
-    val ENABLE_CHEATS                        /**/ by keyToggleBool(false)
+    val ENABLE_CHEATS                        /**/ by keyToggleBool(RejectsConfigScreenSettings, false)
         .CATEGORY("$CONFIG_CATEGORY.general_hotkeys")
     val OPEN_CONFIG_MENU                     /**/ by hotkey("M,L",
                                                             KeybindSettings.INGAME_DEFAULT)
@@ -72,57 +67,7 @@ object Hotkeys : ConfigDeclaration {
 }
 
 fun initMainConfig() {
-    registerConfigDeclaration(ModSettings,
-                              Debugs)
+    RejectsConfigScreenSettings.initMainConfig()
 }
 
 
-const val FILE_PATH = "main-config.json"
-
-fun registerConfigDeclaration(vararg cd: ConfigDeclaration) {
-    when (cd.size) {
-        0 -> {
-            return
-        }
-        1 -> {
-            Configs.add(cd[0])
-        }
-        else -> {
-            cd.forEach {
-                Configs.add(it)
-            }
-        }
-    }
-    Configs.sortBy {
-        DebugLastComparable(it)
-    }
-}
-
-private class DebugLastComparable<T>(val self: T): Comparable<DebugLastComparable<T>> {
-    override fun compareTo(other: DebugLastComparable<T>): Int {
-        if (self === other.self) return 0
-        if (self === Debugs) return 1
-        if (other.self === Debugs) return -1
-        return 0
-    }
-}
-
-val Configs = mutableListOf<ConfigDeclaration>()
-
-object SaveLoadManager: Savable {
-
-    private val configFolder = VanillaUtil.configDirectory("ipn-rejects")
-
-    private val manager: Lazy<ConfigSaveLoadManager> = lazy(LazyThreadSafetyMode.NONE) {
-        ConfigSaveLoadManager(Configs.toMultiConfig(), "ipn-rejects", FILE_PATH)
-    }
-
-    override fun load() {
-        manager.value.load()
-    }
-
-    override fun save() {
-        manager.value.save()
-    }
-
-}

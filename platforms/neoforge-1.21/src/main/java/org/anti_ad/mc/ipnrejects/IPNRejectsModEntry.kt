@@ -22,7 +22,7 @@ package org.anti_ad.mc.ipnrejects
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.loading.FMLEnvironment
-import org.anti_ad.mc.ipnrejects.events.management.OnetimeDelayedInit
+import org.anti_ad.mc.common.events.OnetimeDelayedInit
 import org.anti_ad.mc.libipn.Log
 import org.anti_ad.mc.ipnrejects.forge.IPNRejectsClientInit
 import org.anti_ad.mc.ipnrejects.forge.IPNRejectsServerInit

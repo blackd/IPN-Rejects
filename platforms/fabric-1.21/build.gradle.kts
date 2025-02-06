@@ -33,16 +33,16 @@ import org.anti_ad.mc.ipnrejects.buildsrc.Loaders.*
 import org.anti_ad.mc.ipnrejects.buildsrc.loom_version
 import proguard.gradle.ProGuardTask
 
-val supported_minecraft_versions = mapOf(MODRINTH to listOf("1.21", "1.21.1", "1.21.3", "1.21.4-pre1"),
-                                         CURSEFORGE to listOf("1.21", "1.21.1", "1.21.3", "1.21.4-snapshot", ))
+val supported_minecraft_versions = mapOf(MODRINTH to listOf("1.21", "1.21.1", "1.21.3", "1.21.4"),
+                                         CURSEFORGE to listOf("1.21", "1.21.1", "1.21.3", "1.21.4", ))
 val mod_loader = "fabric"
 val mod_version = project.version.toString()
 val minecraft_version = "1.21"
 val minecraft_version_string = "1.21"
 val mappings_version = "1.21+build.2"
-val loader_version = "0.15.11"
-val modmenu_version = "11.0.0-beta.1"
-val fabric_api_version = "0.100.3+1.21"
+val loader_version = "0.16.10"
+val modmenu_version = "11.0.3"
+val fabric_api_version = "0.102.0+1.21"
 val mod_artefact_version = project.ext["mod_artefact_version"]
 val libIPN_version = "${project.name}:${project.ext["libIPN_version"]}"
 

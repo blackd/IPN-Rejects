@@ -22,9 +22,8 @@ package org.anti_ad.mc.ipnrejects
 import org.anti_ad.mc.alias.SharedConstants
 import org.anti_ad.mc.ipnrejects.cheats.ItemUseCooldown
 import org.anti_ad.mc.ipnrejects.config.ModSettings
-import org.anti_ad.mc.ipnrejects.config.SaveLoadManager
-import org.anti_ad.mc.ipnrejects.events.management.OnetimeDelayedInit
-import org.anti_ad.mc.ipnrejects.input.InputHandler
+import org.anti_ad.mc.ipnrejects.config.RejectsConfigScreenSettings
+import org.anti_ad.mc.common.events.OnetimeDelayedInit
 
 
 private fun initInfoManager() {
@@ -42,13 +41,12 @@ fun specificInit() {
         initInfoManager()
 
         ItemUseCooldown.init()
-        InputHandler.onClientInit()
 
-        SaveLoadManager.load()
+        RejectsConfigScreenSettings.saveLoadManager.load()
         //CustomDataFileLoader.load()
         if (ModSettings.FIRST_RUN.booleanValue) {
             ModSettings.FIRST_RUN. value = false
-            SaveLoadManager.save()
+            RejectsConfigScreenSettings.saveLoadManager.save()
         }
         RejectsInfoManager.event(lazy {"${RejectsInfoManager.loader}/${RejectsInfoManager.mcVersion}/${RejectsInfoManager.version}/started"})
     }

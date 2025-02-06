@@ -1,9 +1,9 @@
 package org.anti_ad.mc.ipnrejects.cheats
 
+import org.anti_ad.mc.common.events.TicksDispatcher
 import org.anti_ad.mc.common.vanilla.Vanilla
 import org.anti_ad.mc.ipnrejects.cheats.config.Cheats
 import org.anti_ad.mc.ipnrejects.config.ModSettings
-import org.anti_ad.mc.ipnrejects.events.management.TicksDispatcher
 
 object ItemUseCooldown {
 

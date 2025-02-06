@@ -22,18 +22,21 @@ package org.anti_ad.mc.ipnrejects.forge
 import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.fml.ModLoadingContext
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
-import org.anti_ad.mc.ipnrejects.gui.screens.ConfigScreen
+import org.anti_ad.mc.common.gui.screen.ConfigScreenBase
+import org.anti_ad.mc.ipnrejects.config.RejectsConfigScreenSettings
 import org.anti_ad.mc.ipnrejects.init
 
 class IPNRejectsClientInit: Runnable {
 
     override fun run() {
 
-        NeoForge.EVENT_BUS.register(ForgeTicksSource())
 
         ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory::class.java) {
-            IConfigScreenFactory { _, _ ->
-                ConfigScreen()
+            IConfigScreenFactory { _, p ->
+                ConfigScreenBase(RejectsConfigScreenSettings).apply {
+                    parent = p
+                    dumpWidgetTree()
+                }
             }
         }
 

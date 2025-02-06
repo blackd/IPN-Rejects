@@ -1,21 +1,18 @@
 package org.anti_ad.mc.ipnrejects.cheats.config
 
-import org.anti_ad.mc.common.config.builder.CATEGORY
-import org.anti_ad.mc.common.config.builder.ConfigDeclaration
-import org.anti_ad.mc.common.config.builder.createBuilder
+import org.anti_ad.mc.common.config.builder.*
 import org.anti_ad.mc.ipnrejects.config.CONFIG_CATEGORY
-import org.anti_ad.mc.ipnrejects.config.registerConfigDeclaration
-import org.anti_ad.mc.ipnrejects.gui.screens.ConfigScreeHelper.keyToggleBool
+import org.anti_ad.mc.ipnrejects.config.RejectsConfigScreenSettings
 
 object Cheats: ConfigDeclaration {
     override val builder = createBuilder()
         .CATEGORY("$CONFIG_CATEGORY.cheating")
-    val INSTANT_MINING_COOLDOWN                   /**/ by keyToggleBool(false)
-    val DISABLE_BLOCK_BREAKING_COOLDOWN           /**/ by keyToggleBool(false)
-    val DISABLE_ITEM_USE_COOLDOWN                 /**/ by keyToggleBool(false)
-    val DISABLE_SCREEN_SHAKING_ON_DAMAGE          /**/ by keyToggleBool(false)
+    val INSTANT_MINING_COOLDOWN                   /**/ by keyToggleBool(RejectsConfigScreenSettings, false)
+    val DISABLE_BLOCK_BREAKING_COOLDOWN           /**/ by keyToggleBool(RejectsConfigScreenSettings, false)
+    val DISABLE_ITEM_USE_COOLDOWN                 /**/ by keyToggleBool(RejectsConfigScreenSettings, false)
+    val DISABLE_SCREEN_SHAKING_ON_DAMAGE          /**/ by keyToggleBool(RejectsConfigScreenSettings, false)
 
-    fun init() {
-        registerConfigDeclaration(this)
+    init {
+        RejectsConfigScreenSettings.registerConfigDeclaration(this)
     }
 }

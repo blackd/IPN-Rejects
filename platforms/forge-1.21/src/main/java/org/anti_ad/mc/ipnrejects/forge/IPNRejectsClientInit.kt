@@ -25,15 +25,14 @@ import net.minecraftforge.fml.IExtensionPoint
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.client.ConfigScreenHandler
 import org.anti_ad.mc.alias.client.gui.screen.Screen
-import org.anti_ad.mc.ipnrejects.gui.screens.ConfigScreen
+import org.anti_ad.mc.common.gui.screen.ConfigScreenBase
+import org.anti_ad.mc.ipnrejects.config.RejectsConfigScreenSettings
 import org.anti_ad.mc.ipnrejects.init
 
 
 class IPNRejectsClientInit: Runnable {
 
     override fun run() {
-
-        MinecraftForge.EVENT_BUS.register(ForgeTicksSource())
 
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest::class.java) {
             IExtensionPoint.DisplayTest({ ModLoadingContext.get().activeContainer.modInfo.version.toString() }) {
@@ -42,7 +41,12 @@ class IPNRejectsClientInit: Runnable {
         }
 
         ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory::class.java) {
-            ConfigScreenHandler.ConfigScreenFactory { minecraft: Minecraft?, screen: Screen? -> ConfigScreen() }
+            ConfigScreenHandler.ConfigScreenFactory { minecraft: Minecraft?, screen: Screen? ->
+                ConfigScreenBase(RejectsConfigScreenSettings).apply {
+                    parent = screen
+                    dumpWidgetTree()
+                }
+            }
         }
 
         init()

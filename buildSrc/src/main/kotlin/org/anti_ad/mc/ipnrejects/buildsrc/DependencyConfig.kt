@@ -74,7 +74,9 @@ fun Project.configureDependencies() {
     }
 
     dependencies {
-        "api"("org.jetbrains:annotations:20.1.0")
+        "api"("org.jetbrains:annotations:24.0.1") {
+            exclude("org.jetbrains.kotlin")
+        }
     }
 }
 
@@ -119,7 +121,7 @@ fun Project.fabricCommonDependency(minecraft_version: Any,
             }
         }
 
-        "modRuntimeOnly"("net.fabricmc:fabric-language-kotlin:1.11.0+kotlin.2.0.0")
+        "modRuntimeOnly"("net.fabricmc:fabric-language-kotlin:1.13.1+kotlin.2.1.10")
     }
 }
 
@@ -130,6 +132,11 @@ fun Project.forgeCommonDependency(minecraft_version: Any,
 
     dependencies {
 
+        "implementation"("org.joml:joml:1.10.5") {
+            version {
+                strictly("1.10.5")
+            }
+        }
 
         libIPN_version?.let {
             "compileOnly"("org.anti_ad.mc:libIPN-$libIPN_version:dev") {
@@ -145,11 +152,6 @@ fun Project.forgeCommonDependency(minecraft_version: Any,
         }
 
 
-        "implementation"("thedarkcolour:kotlinforforge:$kotlin_for_forge_version") {
-/*
-            exclude("org.jetbrains.kotlin")
-*/
-        }
 
 /*
         "implementation"("thedarkcolour:kfflang:$kotlin_for_forge_version") {
@@ -166,6 +168,11 @@ fun Project.forgeCommonDependency(minecraft_version: Any,
         }
 */
 
+        "implementation"("thedarkcolour:kotlinforforge:$kotlin_for_forge_version") {
+            exclude("org.jetbrains.kotlin")
+        }
+
+
         "implementation"("net.sf.jopt-simple:jopt-simple:5.0.4") {
             version {
                 strictly("5.0.4")
@@ -173,6 +180,8 @@ fun Project.forgeCommonDependency(minecraft_version: Any,
         }
 
         "minecraft"("net.minecraftforge:forge:$minecraft_version-$loader_version")
+
+
     }
 }
 
